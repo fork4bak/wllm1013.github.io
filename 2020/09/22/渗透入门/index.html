@@ -1,0 +1,565 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/08067.jpg">
+  <link rel="icon" type="image/png" href="/img/08067.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="wllm">
+  <meta name="keywords" content="">
+  <title>渗透入门 - SWPU_08067sec</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Wllm's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-09-22 09:27" pubdate>
+      2020年9月22日 上午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">渗透入门</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h3 id="web安全简单说"><a href="#web安全简单说" class="headerlink" title="web安全简单说"></a>web安全简单说</h3><p>网络安全的学习有很多方向：渗透测试，逆向工程，密码学，移动安全，硬件安全等。就web渗透来说的话，入门相对简单，因为我们都接触和实际使用过网站，但是web渗透越深入越复杂，越往后学习，涉及到的知识体系越大。所以学习web渗透，重点是<strong>将相关的基础知识打牢</strong>，基础知识牢固，后面继续深入学习的时候才会顺其自然。</p>
+<h3 id="知识简介"><a href="#知识简介" class="headerlink" title="知识简介"></a>知识简介</h3><p>说到web渗透的基础知识，web渗透的基础知识很多，这也就是为什么深入学习的时候它的知识体系是非常庞大的。web前后端，web服务器，HTML，js，php，java，python等语言，liunx相关知识，协议，端口；同时还有很多的专业术语：exp，poc，payload，shell等。</p>
+<h3 id="入门指南"><a href="#入门指南" class="headerlink" title="入门指南"></a>入门指南</h3><p>上面简单介绍了一下web渗透相关的东西，下面主要详细说一下关于web渗透入门学习的一个推荐学习历程（可根据自己的实际情况学习，这里只是针对不知道该如何学习的同学的一个引导）：</p>
+<h4 id="前端语言"><a href="#前端语言" class="headerlink" title="前端语言"></a>前端语言</h4><p>写出来的web页面总要有点样式吧，所以前端还是要简单学习一下的，才开始入门的话不用太深入，简单的学习即可：</p>
+<ul>
+<li>HTML</li>
+<li>javascript</li>
+<li>ajax</li>
+<li>css</li>
+</ul>
+<p>推荐学习地址：<br><a target="_blank" rel="noopener" href="https://www.runoob.com/html/html-tutorial.html">HTML</a><br><a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-tutorial.html">javascript</a><br><a target="_blank" rel="noopener" href="https://www.runoob.com/ajax/ajax-tutorial.html">ajax</a><br><a target="_blank" rel="noopener" href="https://www.runoob.com/css/css-tutorial.html">css</a></p>
+<h4 id="后端语言PHP"><a href="#后端语言PHP" class="headerlink" title="后端语言PHP"></a>后端语言PHP</h4><p>php语言主要就是方便简单，但同时PHP出现的漏洞也是非常多的，在我们初学web时，使用php可以帮助我们很快的入门，初学时要会写简单的代码，实现get，post请求，知道cookie，header，实现前后端交互，对数据库的操作这些简单的操作。<br><a target="_blank" rel="noopener" href="https://www.runoob.com/php/php-tutorial.html">PHP教程</a></p>
+<p>我们要使用一个web服务器来运行php写的简单的站点或者页面，这里我们使用PHPstudy，PHPstudy集成了Apache+PHP+mysql，没有复杂的服务器配置，使用非常简单。<br><a target="_blank" rel="noopener" href="http://phpstudy.php.cn/download.html">PHPstudy下载</a></p>
+<p>使用PHP之前推荐先了解学习MySQL</p>
+<h4 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h4><p>MySQL是一个使用非常广泛关系型数据库，入门学习的时候会<strong>增删查改</strong>操作即可，推荐使用PHPstudy集成的MySQL进行练习。<br><a target="_blank" rel="noopener" href="https://www.runoob.com/mysql/mysql-tutorial.html">MySQL学习</a></p>
+<h4 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h4><p>简单了解http是如何发送请求的，数据报是如何构成的。<br><a target="_blank" rel="noopener" href="https://www.runoob.com/http/http-tutorial.html">HTTP协议</a></p>
+<h4 id="Linux学习"><a href="#Linux学习" class="headerlink" title="Linux学习"></a>Linux学习</h4><p>linux系统是不同于windows系统的，在成为一个hacker的道路中不会linux是不可能的，不过入门的话不需要学太仔细，会使用基本的命令操作linux，会在linux上搭建一个web服务器。<br><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/Linux-intro.html">Liunx学习</a></p>
+<p>这里可能会有点难入门，linux服务器可以使用VMware workstation 或者 腾讯云/阿里云购买一台ubuntu服务器，这个可以先暂时放在一边，也可以问学长，只要是学习，学长们都是来者不拒的。</p>
+<h3 id="常见漏洞"><a href="#常见漏洞" class="headerlink" title="常见漏洞"></a>常见漏洞</h3><p>学习了上面的基础知识后，就可以开始学习一些漏洞原理了，学习原理是通过PHP复现，一是PHP简单易上手，二是PHP几乎涵盖所有常见类型漏洞，理解起来也比较简单</p>
+<h4 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h4><p>MySQL学习过，我想SQL语句也已经有了一定的学习，通过学习知道什么是SQL注入：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ideality_hunter/article/details/80623526">sql注入，一个例子让你知道什么是sql注入</a>(如果看不懂多百度)</p>
+<p>然后在本地搭建一个专门练习SQL注入的平台，下载源码<br><a target="_blank" rel="noopener" href="https://github.com/Audi-1/sqli-labs">下载 sqli-labs 源码</a><br>放到PHPstudy里面去运行，就可以训练SQL注入了。<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/peterpan0707007/p/7501575.html">sqli-labs搭建</a></p>
+<h4 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h4><p>学习过PHP，应该对include()，include_once()，require()，require_once() 有所了解，具体请看：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3514f0fd79f7">文件包含漏洞学习总结</a></p>
+<h4 id="命令执行，代码执行"><a href="#命令执行，代码执行" class="headerlink" title="命令执行，代码执行"></a>命令执行，代码执行</h4><p><a target="_blank" rel="noopener" href="https://www.0dayhack.com/post-834.html">Web渗透测试中命令执行漏洞详解</a><br>实际可以在dvwa平台上操作。</p>
+<h4 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h4><p>文件上传漏洞主要是上传webshell，获取网站权限。<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5ebba0482980">文件上传漏洞</a><br>同sqli-labs一样，文件上传也有一个靶场：<br><a target="_blank" rel="noopener" href="https://github.com/c0ny1/upload-labs">upload-labs</a><br>先自己黑盒测试，如果绕不过，就白盒看看能否上传成功，实在不行就看writeup<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2435">upload-labs通关手册</a></p>
+<h4 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h4><p>学XSS要学会javascript，xss又分为反射型、存储型、DOM型xss，是由于对用户的输入过滤不严造成的，将这些恶意代码嵌入到网页中，当用户浏览的时候，其中的恶意代码就会执行。<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Hydraxx/p/8530906.html">XSS漏洞详解</a></p>
+<p>发现一个xss小游戏，还挺有意思的：<br><a target="_blank" rel="noopener" href="https://xss.haozi.me/#/">xss小游戏</a></p>
+<h4 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h4><p>CSRF现在的危害越来越小，而且防范也非常容易，但是必要的漏洞原理还是要学习。<br><a target="_blank" rel="noopener" href="https://www.freebuf.com/column/155800.html">Web安全-CSRF漏洞</a></p>
+<h4 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h4><p>SSRF是通过服务器端去发送请求，可以执行访问内网，探测端口等敏感操作。<br><a target="_blank" rel="noopener" href="https://uknowsec.cn/posts/notes/SSRF%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%88%A9%E7%94%A8%E4%B8%8E%E5%AD%A6%E4%B9%A0.html">SSRF漏洞的利用与学习</a></p>
+<h4 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h4><p>学习XXE漏洞之前需要学一下XML。<br><a target="_blank" rel="noopener" href="https://www.runoob.com/xml/xml-tutorial.html">XML教程</a><br>[一篇文章带你理解漏洞之 XXE 漏洞](<a target="_blank" rel="noopener" href="https://www.k0rz3n.com/2018/11/19/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3">https://www.k0rz3n.com/2018/11/19/一篇文章带你深入理解</a> XXE 漏洞/)</p>
+<h4 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h4><p>先学习PHP的反序列化，等后面学了java后，再学习java的反序列化漏洞。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/nzjdsds/article/details/82703639">四个实例递进php反序列化漏洞理解</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/167721.html">最通俗易懂的PHP反序列化原理分析</a></p>
+<h4 id="SSTI模板注入"><a href="#SSTI模板注入" class="headerlink" title="SSTI模板注入"></a>SSTI模板注入</h4><p><a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/83999.html">服务端模板注入攻击 （SSTI）之浅析</a></p>
+<h4 id="变量覆盖"><a href="#变量覆盖" class="headerlink" title="变量覆盖"></a>变量覆盖</h4><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a4d782e91852">CTF之php变量覆盖漏洞</a></p>
+<h4 id="论PHP的常见漏洞"><a href="#论PHP的常见漏洞" class="headerlink" title="论PHP的常见漏洞"></a>论PHP的常见漏洞</h4><p>如果前面的都了解了或者说学的不错了，那这篇文章就当一个比较全面的总结吧。<br><a target="_blank" rel="noopener" href="http://www.vuln.cn/7075">http://www.vuln.cn/7075</a></p>
+<h4 id="大量的CTF练习"><a href="#大量的CTF练习" class="headerlink" title="大量的CTF练习"></a>大量的CTF练习</h4><p>在前期阶段，做大量的CTF题目有助于我们快速的成长，因为CTF里面涉及到了很多的知识点，做大量的题目，搞清楚每个题目所涉及到的知识点，最后无疑会产生非常大的一个质变。除了我下面推荐的两个平台，i春秋，合天智汇等也有优质的CTF赛题，还有很多是往届赛事的题目。当大家融入到这个圈子之后，找这些也很容易。</p>
+<h3 id="推荐靶场"><a href="#推荐靶场" class="headerlink" title="推荐靶场"></a>推荐靶场</h3><h4 id="DVWA"><a href="#DVWA" class="headerlink" title="DVWA"></a>DVWA</h4><p>DVWA涵盖了php的常见漏洞，提供了一个测试环境，上述提到的漏洞基本都可以在这上面进行复现。<br>源码下载：<a target="_blank" rel="noopener" href="https://github.com/ethicalhack3r/DVWA">dvwa源码下载</a><br>同sqli-labs一样，将DVWA放在PHPstudy的www目录下，配置好数据库即可运行。</p>
+<h4 id="Bugku"><a href="#Bugku" class="headerlink" title="Bugku"></a>Bugku</h4><p><a target="_blank" rel="noopener" href="https://ctf.bugku.com/">Bugku</a>是一个ctf练习平台，在初学阶段，ctf可以衡量大家是否掌握这些基础知识。</p>
+<h4 id="攻防世界"><a href="#攻防世界" class="headerlink" title="攻防世界"></a>攻防世界</h4><p><a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/">攻防世界</a>也是一个ctf平台。</p>
+<p>大家在做ctf的时候，肯定会有些题不会做，先试着自己做，当实在不会的时候再在网上搜索writeup，跟着writeup边做边思考为什么，然后再自己思考是否还有其他做法。</p>
+<h3 id="工具学习"><a href="#工具学习" class="headerlink" title="工具学习"></a>工具学习</h3><h4 id="sqlmap"><a href="#sqlmap" class="headerlink" title="sqlmap"></a>sqlmap</h4><p>sqlmap是一个开源的渗透测试工具，可以用来进行自动化检测，利用SQL注入漏洞，获取数据库服务器的权限。<br>学习链接：<br><a target="_blank" rel="noopener" href="http://www.vuln.cn/1992">Sqlmap使用教程</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/sectool/164608.html">超详细SQLMap使用攻略及技巧分享</a></p>
+<p>因为sqlmap需要python环境的的，所以要先搭建好python环境：<br><a target="_blank" rel="noopener" href="https://www.runoob.com/python/python-install.html">python 环境搭建</a></p>
+<h4 id="burpsuite"><a href="#burpsuite" class="headerlink" title="burpsuite"></a>burpsuite</h4><p>burp是一个可以抓取请求数据包/拦截响应数据包的工具，在渗透测试中，burp是必备工具，必须要熟练运用burpsuite。<br>因为burp专业版收费，可以在网上找破解版，burpsuite安装与使用：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/liweibin812/article/details/83650751">burp suite的安装与基本使用</a></p>
+<p>安装burp需要jdk，所以要先安装配置好jdk：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42003566/article/details/82629570">jdk的下载与安装详细图解</a></p>
+<h3 id="其余优质学习资料"><a href="#其余优质学习资料" class="headerlink" title="其余优质学习资料"></a>其余优质学习资料</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://wizardforcel.gitbooks.io/mst-sec-lecture-notes/">米斯特白帽培训讲义</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/CHYbeta/Web-Security-Learning">Web-Security-Learning</a></li>
+<li><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2231">零基础web安全学习终极攻略</a></li>
+<li><a target="_blank" rel="noopener" href="https://websec.readthedocs.io/zh/latest/index.html#">Web安全学习笔记</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.knownsec.com/Knownsec_RD_Checklist/">技能研发表</a></li>
+</ul>
+<h3 id="推荐web安全微信公众号"><a href="#推荐web安全微信公众号" class="headerlink" title="推荐web安全微信公众号"></a>推荐web安全微信公众号</h3><ul>
+<li>HACK学习呀</li>
+<li>合天智汇</li>
+<li>Ms08067安全实验室</li>
+<li>安全祖师爷</li>
+<li>洛米唯熊</li>
+<li>小白帽学习之路</li>
+</ul>
+<h3 id="推荐知识星球"><a href="#推荐知识星球" class="headerlink" title="推荐知识星球"></a>推荐知识星球</h3><ul>
+<li>Bypass<br>(其他的不收费的我也不太了解)</li>
+</ul>
+<h3 id="推荐学习平台"><a href="#推荐学习平台" class="headerlink" title="推荐学习平台"></a>推荐学习平台</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.ichunqiu.com/">i春秋</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.hetianlab.com/">合天智汇实验室</a></li>
+<li><a target="_blank" rel="noopener" href="https://xz.aliyun.com/">先知社区</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.anquanke.com/">安全客</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.freebuf.com/">freebuf</a></li>
+</ul>
+<h3 id="PDF分享"><a href="#PDF分享" class="headerlink" title="PDF分享"></a>PDF分享</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1KLX5rXkN-qQTSFrclyDWNQ">白帽子讲Web安全</a></li>
+<li><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1tZF2Jdrn36x1A1PuYStD1A">黑客攻防技术宝典-Web实战篇(第2版)</a></li>
+<li><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1rQfpIvyUbZb3qKEnf2ix2w">Web前端黑客技术揭秘</a></li>
+<li><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1imIXl1rVpLv1iFEnY7zOfg">鸟哥的私房菜-linux基础篇</a></li>
+<li><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/11DsUl0IMsEiljZ4mx8KitQ">图解HTTP</a></li>
+</ul>
+<h3 id="说在最后"><a href="#说在最后" class="headerlink" title="说在最后"></a>说在最后</h3><p>学习最重要的是静下心来，这点我深有体会，后期在学一个东西或者知识点的时候，一定要记得专研，不要只停留在一个浅在的表面，只有专研才能有进步，在学习一个东西的时候切记不要分心，不要受外界影响，不能看到其他人在打游戏，出去玩，你也就想着一起玩会儿游戏，人是很容易堕落的，希望大家在学习的道路上能一往无前。</p>
+<p>上面的一些学习链接如果并不能让大家理解这个东西，可以继续百度，也可以咨询学长们。在学习过程中遇到的任何问题都可以咨询群里的学长，也欢迎大家多多问问题，同时有什么意见或者提议也可以联系我们。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%B8%97%E9%80%8F/">渗透</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%85%A5%E9%97%A8/">入门</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B8%97%E9%80%8F/">渗透</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/22/%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">逆向入门</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/22/pwn%E5%85%A5%E9%97%A8/">
+                        <span class="hidden-mobile">二进制安全入门</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "渗透入门&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
