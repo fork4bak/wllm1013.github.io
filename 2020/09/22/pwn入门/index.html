@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="wllm">
   <meta name="keywords" content="">
-  <title>Android安全入门 - SWPU_08067sec</title>
+  <title>二进制安全入门 - SWPU_08067sec</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -172,8 +172,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-09-01 20:57" pubdate>
-      2020年9月1日 晚上
+    <time datetime="2020-09-22 09:27" pubdate>
+      2020年9月22日 上午
     </time>
   </div>
 
@@ -183,7 +183,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      178 字
+      590 字
     </span>
   
 
@@ -193,7 +193,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      6
        分钟
     </span>
   
@@ -223,14 +223,78 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Android安全入门</h1>
+            <h1 style="display: none">二进制安全入门</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="0x1背景介绍"><a href="#0x1背景介绍" class="headerlink" title="0x1背景介绍"></a>0x1背景介绍</h1><p>移动安全主要针对常见的移动应用，根据市面上主流的操作系统，分为<strong>Android安全</strong>和<strong>IOS安全</strong>，团队目前的主要学习方向为<strong>Android安全</strong>，通过学习<strong>Android安全</strong>，达到对Android APP运行原理的剖析，进而实现一些APP的破解和防护。</p>
-<h1 id="0x2学习内容"><a href="#0x2学习内容" class="headerlink" title="0x2学习内容"></a>0x2学习内容</h1><p>主要学习的基础内容包括<strong>c语言及java基础语法</strong>，<strong>arm汇编语言</strong>，<strong>smali语法</strong>，<strong>相关逆向分析工具的使用</strong></p>
-<h1 id="0x3学习资料"><a href="#0x3学习资料" class="headerlink" title="0x3学习资料"></a>0x3学习资料</h1><p>这里给出一些基础的学习资料</p>
-<p>C语言：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17s411N78s">https://www.bilibili.com/video/BV17s411N78s</a></p>
-<p>Android软件安全与逆向分析(书)：<a target="_blank" rel="noopener" href="https://pan.baidu.com/share/link?shareid=786047723&amp;uk=4094128358">https://pan.baidu.com/share/link?shareid=786047723&amp;uk=4094128358</a></p>
+              <blockquote>
+<ol>
+<li><p>pwn：”Pwn”是一个黑客语法的俚语词 ，是指攻破设备或者系统 。发音类似“砰”，对黑客而言，这就是成功实施黑客攻击的声音——砰的一声，被“黑”的电脑或手机就被你操纵。</p>
+<p>CTF中PWN题型通常会直接给定一个已经编译好的二进制程序（Windows下的EXE或者Linux下的ELF文件等），然后参赛选手通过对二进制程序进行逆向分析和调试来找到利用漏洞，并编写利用代码，通过远程代码执行来达到溢出攻击的效果，最终拿到目标机器的shell夺取flag。</p>
+</li>
+<li><p>二进制逆向可以概括为 从目标代码反推到源代码，再通过源代码去理解该文件的实现的功能和创作的意义，这项技术在实战中常应用的领域为 软件破解、漏洞挖掘、恶意木马的分析。</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="0x01-基础知识"><a href="#0x01-基础知识" class="headerlink" title="0x01 基础知识"></a>0x01 基础知识</h1><p>掌握C语言，推荐小甲鱼的教学视频 </p>
+<p>掌握汇编语言，推荐书籍《汇编语言（第三版）》——王爽 </p>
+<p>学习linux系统，推荐书籍《鸟哥的linux私房菜》 </p>
+<p>学习python基本语法，推荐廖雪峰的网站 \ 《python核心编程》</p>
+<h1 id="0x02-工具准备"><a href="#0x02-工具准备" class="headerlink" title="0x02 工具准备"></a>0x02 工具准备</h1><ul>
+<li>VMWare虚拟机中安装ubuntu16&amp;&amp;18</li>
+<li>IDA Pro</li>
+<li>OllyDbg </li>
+</ul>
+<p>对于这些工具都要会简单的调试</p>
+<h2 id="ubuntu中的工具安装"><a href="#ubuntu中的工具安装" class="headerlink" title="ubuntu中的工具安装"></a>ubuntu中的工具安装</h2><ul>
+<li><p>pwntools（<a target="_blank" rel="noopener" href="https://pwntools.readthedocs.io/en/stable/">pwntools的官方文档</a>） </p>
+</li>
+<li><p>gdb（以下三种选一即可） 学会使用gdb</p>
+</li>
+<li><ul>
+<li>peda </li>
+</ul>
+</li>
+<li><ul>
+<li>pwndbg </li>
+</ul>
+</li>
+<li><ul>
+<li>gef </li>
+</ul>
+</li>
+<li><p>python </p>
+</li>
+<li><p>ROPgadget </p>
+</li>
+<li><p>one_gadget </p>
+<p>剩下的一些工具在学习中用到时再慢慢安装，如roputils 、 LibcSearcher</p>
+</li>
+</ul>
+<h1 id="0x03-学习资料"><a href="#0x03-学习资料" class="headerlink" title="0x03 学习资料"></a>0x03 学习资料</h1><h2 id="集合："><a href="#集合：" class="headerlink" title="集合："></a>集合：</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://ctf-wiki.github.io/ctf-wiki/pwn/readme-zh/">CTF-wiki</a> 入门可以先跟着Wiki走，从栈溢出开始学习，跟着复现</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://firmianay.gitbooks.io/ctf-all-in-one/content/">CTF-All-In-One</a> 也是一个不错的资料</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://sploitfun.wordpress.com/2015/06/26/linux-x86-exploit-development-tutorial-series/">SploitFun Linux x86 Exploit 开发系列教程</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://chybeta.github.io/2017/08/19/Software-Security-Learning/">Software-Security-Learning</a></p>
+</li>
+</ol>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>一步一步ROP系列 </p>
+<ul>
+<li>之x86</li>
+<li>之x64</li>
+<li>之gadgets和2free</li>
+</ul>
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><p><a target="_blank" rel="noopener" href="https://github.com/shellphish/how2heap">how2heap</a></p>
+<p><a href="%5Bhttps://paper.seebug.org/papers/Archive/refs/heap/glibc%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86ptmalloc%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90.pdf%5D(https://paper.seebug.org/papers/Archive/refs/heap/glibc%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86ptmalloc%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90.pdf)">Glibc 内存管理 Ptmalloc2 源代码分析</a></p>
+<h2 id="书"><a href="#书" class="headerlink" title="书"></a>书</h2><p>《程序员的自我修养》</p>
+<p>《深入理解计算机系统》</p>
+<p>《有趣的二进制》</p>
+<p>《0day漏洞挖掘与利用》</p>
+<h1 id="0x04-其他"><a href="#0x04-其他" class="headerlink" title="0x04 其他"></a>0x04 其他</h1><p>可以到 jarvis oj \ buuctf \ pwnable.tw \ pwnable.kr 等平台进行练习ctf-pwn</p>
+<p>常去一些安全平台，如 看雪、FreeBuf、安全客、先知、吾爱破解等学习新知识新思想</p>
+<p>逆向和二进制不分家，入门二进制，基础很重要</p>
 
             </div>
             <hr>
@@ -240,7 +304,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%AE%89%E5%8D%93/">安卓</a>
+                      <a class="hover-with-bg" href="/categories/pwn/">pwn</a>
                     
                   </div>
                 
@@ -248,9 +312,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%AE%89%E5%8D%93/">安卓</a>
-                    
                       <a class="hover-with-bg" href="/tags/%E5%85%A5%E9%97%A8/">入门</a>
+                    
+                      <a class="hover-with-bg" href="/tags/pwn/">pwn</a>
                     
                   </div>
                 
@@ -263,7 +327,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/09/02/%E6%B8%97%E9%80%8F%E5%85%A5%E9%97%A8/">
+                      <a href="/2020/09/22/%E6%B8%97%E9%80%8F%E5%85%A5%E9%97%A8/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">渗透入门</span>
                         <span class="visible-mobile">上一篇</span>
@@ -273,8 +337,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/09/01/pwn%E5%85%A5%E9%97%A8/">
-                        <span class="hidden-mobile">二进制安全入门</span>
+                      <a href="/2020/09/22/Android%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8/">
+                        <span class="hidden-mobile">Android安全入门</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -413,7 +477,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Android安全入门&nbsp;",
+        "二进制安全入门&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
