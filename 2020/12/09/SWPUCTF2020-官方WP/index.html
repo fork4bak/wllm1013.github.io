@@ -183,7 +183,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      11.1k 字
+      10.9k 字
     </span>
   
 
@@ -193,7 +193,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      169
+      165
        分钟
     </span>
   
@@ -238,95 +238,67 @@
 
 <p><img src="http://cdn.jev0n.com//s0SEDhdn9LsruJx6.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <ul>
-<li><p>分别查询LTLT库和h1nt库得到LTLT库中的login表，里面有pwd,usn，usn 是admin123,pwd是md5,在somd5查询得到 wllm@123</p>
-</li>
-<li><pre><code>http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39; and 1=2 union select 1,2,3,group_concat(pwd) from login-- -
-<pre><code class="hljs markdown">
-![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//g6R2P7KinrnVTjco.png!thumbnail</span>)
-
-<span class="hljs-bullet">*</span> h1nt库中是help表，里面有hint，内容是一个页面名，访问后提示先登录，但是并没有给登录地址，所用会话也不是与 administrator.html 相同，所以这条路先暂停
-<span class="hljs-bullet">*</span> [<span class="hljs-string">http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#x27; and 1=2 union select 1,2,3,group_concat(hint) from h1nt.help-- -</span>](<span class="hljs-link">http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#x27; and 1=2 union select 1,2,3,group_concat(hint</span>) from h1nt.help-- -)
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//TQmhpOesRlwRsEo7.png!thumbnail</span>)
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//0mIbhjOlPnfAfpag.png!thumbnail</span>)
-
-<span class="hljs-bullet">*</span> 利用得到的 usn和pwd登录进入robots.txt中的 administrator.html
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//2B03P4zqzX6RnmUq.png!thumbnail</span>)
-
-<span class="hljs-bullet">*</span> 进去后是一个后台，翻看页面后发现无明显可利用点，查看源码发现憨憨开发注释掉的部分
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//3PY8np9P7bRDRuIR.png!thumbnail</span>)
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//6sKyTB8ZX1SLwZQF.png!thumbnail</span>)
-
-<span class="hljs-bullet">*</span> 访问 writeuser<span class="hljs-emphasis">_00001_</span>log.log 后得到一页的base64，丢burp解码，找到可疑页面 up<span class="hljs-emphasis">_lo_</span>ad<span class="hljs-emphasis">_ad_</span>min.php
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//UcCJEOrAEBTOtCbK.png!thumbnail</span>)
-
-<span class="hljs-bullet">*</span> 访问发现要登录，但是只有一条信息需要验证，F12发现有输入长度限制为5，猜测是前面log页面中的user:00001
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//2x1MFSXYHW1YtGFg.png!thumbnail</span>)
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//CH2HoV512vHbdVGk.png!thumbnail</span>)
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//FuX1MfweX6W7PDLZ.png!thumbnail</span>)
-
-<span class="hljs-bullet">*</span> 登录成功后发现是一个文件上传点,很多师傅在这里上传了很久都没成功，其实在现在的开发中，只要合理运用白名单，基本就能防死文件上传，这里文件上传的后端验证就是白名单，只能上传jpg,png,gif，所以理论上无法传马
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">https://images-cdn.shimo.im/2Lj9BdBvDenYUDMx__thumbnail.png</span>)
-
-<span class="hljs-bullet">*</span> 先上传一个正常图片，得到如下信息
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">https://images-cdn.shimo.im/e1WiP8ADMnLzlzSL__thumbnail.png</span>)
-
-<span class="hljs-bullet">*</span> 之前在h1nt库中拿到的 last<span class="hljs-emphasis">_index_</span>come<span class="hljs-emphasis">_on_</span>swpu<span class="hljs-emphasis">_ctf.php?id=4 页面现在发现可以进去了，这个页面的登录验证就是用的密码是00001的那个页面，进去后发现可以直接sql注入</span>
-<span class="hljs-emphasis">* getshell的常规方法中，利用sql语句的into  outfile并不算罕见，只是由于很多情况下secure_</span>file<span class="hljs-emphasis">_priv并未设置，导致无法进行这类文件读写，但是这在渗透中仍然不应该是被忘记的一种方法，没有尝试就不能凭经验否定这种方法。我们尝试写入一句话，但是考虑到目录可能没有可写权限，我们需要找到一个确定有可写权限的文件夹，很容易联想到上传页面暴漏的文件夹就有可写权限，于是构造语句写入一句话</span>
-<span class="hljs-emphasis"></span>
-<span class="hljs-emphasis">![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//mNQnyuHQPrPE5mBX.png!thumbnail</span>)</span>
-<span class="hljs-emphasis"></span>
-<span class="hljs-emphasis">![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//n0gGRcfDFyYg0Pr5.png!thumbnail</span>)</span>
-<span class="hljs-emphasis"></span>
-<span class="hljs-emphasis">* 利用木马文件进行命令执行system(&#x27;cat /flag&#x27;);即可获得flag</span>
-<span class="hljs-emphasis"></span>
-<span class="hljs-emphasis">![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//Z54hDTIq7Hd4GG0D.png!thumbnail</span>)</span>
-<span class="hljs-emphasis"></span>
-<span class="hljs-emphasis">![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//M3gn6mgsHFGCeUFJ.png!thumbnail</span>)</span>
-<span class="hljs-emphasis"></span>
-<span class="hljs-emphasis">### 2.非预期</span>
-<span class="hljs-emphasis"></span>
-<span class="hljs-emphasis">* 出题时本意是在前台页面用WAF防死SQL注入，但是由于WAF版本未及时更新，有少数师傅用load_</span>file将文件暴力读取了,类似这种
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//Z16ge7NNThjWcN8y.png!thumbnail</span>)
-
-<span class="hljs-section">## sqlsqlsql</span>
-
-<span class="hljs-section">### 前言</span>
-
-此题参考了第三届CBCTF的sql-labs
-
-<span class="hljs-section">### 过滤</span>
-
-自己测试可以发现如下过滤
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//xeM5wxMY44vQQBES.png!thumbnail</span>)
-
-![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//iLUlosx7Xaanl1RY.png!thumbnail</span>)
-
-<span class="hljs-section">### 解题思路</span>
-
-users表字段 id name emile salary
-
-flllag表字段 id asuazttaz
-
-查看源码可以获得提示
-
-<span class="hljs-code">```xml</span>
-<span class="hljs-code">&lt;!-- select * from users where id = &#x27;$id&#x27;--&gt;</span></code></pre>
-</code></pre>
-</li>
+<li>分别查询LTLT库和h1nt库得到LTLT库中的login表，里面有pwd,usn，usn 是admin123,pwd是md5,在somd5查询得到 wllm@123</li>
+<li><a target="_blank" rel="noopener" href="http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;">http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;</a> and 1=2 union select 1,2,3,group_concat(pwd) from login– -</li>
 </ul>
+<p><img src="http://cdn.jev0n.com//g6R2P7KinrnVTjco.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<ul>
+<li>h1nt库中是help表，里面有hint，内容是一个页面名，访问后提示先登录，但是并没有给登录地址，所用会话也不是与 administrator.html 相同，所以这条路先暂停</li>
+<li>[<a target="_blank" rel="noopener" href="http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;">http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;</a> and 1=2 union select 1,2,3,group_concat(hint) from h1nt.help– -](<a target="_blank" rel="noopener" href="http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;">http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;</a> and 1=2 union select 1,2,3,group_concat(hint) from h1nt.help– -)</li>
+</ul>
+<p><img src="http://cdn.jev0n.com//TQmhpOesRlwRsEo7.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//0mIbhjOlPnfAfpag.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<ul>
+<li>利用得到的 usn和pwd登录进入robots.txt中的 administrator.html</li>
+</ul>
+<p><img src="http://cdn.jev0n.com//2B03P4zqzX6RnmUq.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<ul>
+<li>进去后是一个后台，翻看页面后发现无明显可利用点，查看源码发现憨憨开发注释掉的部分</li>
+</ul>
+<p><img src="http://cdn.jev0n.com//3PY8np9P7bRDRuIR.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//6sKyTB8ZX1SLwZQF.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<ul>
+<li>访问 writeuser_00001_log.log 后得到一页的base64，丢burp解码，找到可疑页面 up_lo_ad_ad_min.php</li>
+</ul>
+<p><img src="http://cdn.jev0n.com//UcCJEOrAEBTOtCbK.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<ul>
+<li>访问发现要登录，但是只有一条信息需要验证，F12发现有输入长度限制为5，猜测是前面log页面中的user:00001</li>
+</ul>
+<p><img src="http://cdn.jev0n.com//2x1MFSXYHW1YtGFg.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//CH2HoV512vHbdVGk.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//FuX1MfweX6W7PDLZ.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<ul>
+<li>登录成功后发现是一个文件上传点,很多师傅在这里上传了很久都没成功，其实在现在的开发中，只要合理运用白名单，基本就能防死文件上传，这里文件上传的后端验证就是白名单，只能上传jpg,png,gif，所以理论上无法传马</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/2Lj9BdBvDenYUDMx__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
+<ul>
+<li>先上传一个正常图片，得到如下信息</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/e1WiP8ADMnLzlzSL__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
+<ul>
+<li>之前在h1nt库中拿到的 last_index_come_on_swpu_ctf.php?id=4 页面现在发现可以进去了，这个页面的登录验证就是用的密码是00001的那个页面，进去后发现可以直接sql注入</li>
+<li>getshell的常规方法中，利用sql语句的into  outfile并不算罕见，只是由于很多情况下secure_file_priv并未设置，导致无法进行这类文件读写，但是这在渗透中仍然不应该是被忘记的一种方法，没有尝试就不能凭经验否定这种方法。我们尝试写入一句话，但是考虑到目录可能没有可写权限，我们需要找到一个确定有可写权限的文件夹，很容易联想到上传页面暴漏的文件夹就有可写权限，于是构造语句写入一句话</li>
+</ul>
+<p><img src="http://cdn.jev0n.com//mNQnyuHQPrPE5mBX.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//n0gGRcfDFyYg0Pr5.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<ul>
+<li>利用木马文件进行命令执行system(‘cat /flag’);即可获得flag</li>
+</ul>
+<p><img src="http://cdn.jev0n.com//Z54hDTIq7Hd4GG0D.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//M3gn6mgsHFGCeUFJ.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<h3 id="2-非预期"><a href="#2-非预期" class="headerlink" title="2.非预期"></a>2.非预期</h3><ul>
+<li>出题时本意是在前台页面用WAF防死SQL注入，但是由于WAF版本未及时更新，有少数师傅用load_file将文件暴力读取了,类似这种</li>
+</ul>
+<p><img src="http://cdn.jev0n.com//Z16ge7NNThjWcN8y.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<h2 id="sqlsqlsql"><a href="#sqlsqlsql" class="headerlink" title="sqlsqlsql"></a>sqlsqlsql</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>此题参考了第三届CBCTF的sql-labs</p>
+<h3 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h3><p>自己测试可以发现如下过滤</p>
+<p><img src="http://cdn.jev0n.com//xeM5wxMY44vQQBES.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//iLUlosx7Xaanl1RY.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>users表字段 id name emile salary</p>
+<p>flllag表字段 id asuazttaz</p>
+<p>查看源码可以获得提示</p>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- select * from users where id = &#x27;$id&#x27;--&gt;</span></code></pre>
+
 <p>这个提示是想说明要闭合id字段的引号<br>结合页面的英文提示，很容易想到这个题是时间盲注</p>
 <h4 id="需要注意的点"><a href="#需要注意的点" class="headerlink" title="需要注意的点"></a>需要注意的点</h4><ol>
 <li>用异或来闭合引号</li>
@@ -420,7 +392,7 @@ exp(<span class="hljs-string">&quot;request.__class__.__getitem__=__builtins__.e
 <h2 id="重来"><a href="#重来" class="headerlink" title="重来"></a>重来</h2><p>访问网站，是个登陆</p>
 <p><img src="https://images-cdn.shimo.im/SyslTmLrOKUiV7qO__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>登陆处发现login.js</p>
-<p><a href="mailto:&#x74;&#101;&#115;&#116;&#64;&#x71;&#113;&#46;&#99;&#x6f;&#109;">&#x74;&#101;&#115;&#116;&#64;&#x71;&#113;&#46;&#99;&#x6f;&#109;</a> test登录</p>
+<p><a href="mailto:&#116;&#101;&#x73;&#x74;&#x40;&#113;&#x71;&#46;&#x63;&#x6f;&#109;">&#116;&#101;&#x73;&#x74;&#x40;&#113;&#x71;&#46;&#x63;&#x6f;&#109;</a> test登录</p>
 <p><img src="https://images-cdn.shimo.im/DQAKRGTWoxXXTZI5__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>更改user为admin，访问，越权成功</p>
 <p><a target="_blank" rel="noopener" href="http://192.144.157.29:8080/a.php?classname=index&param2=admin">http://xxxx.xxx.xxx.xx/a.php?classname=index&amp;param2=admin</a></p>
